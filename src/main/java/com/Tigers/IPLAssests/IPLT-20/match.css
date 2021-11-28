@@ -1,0 +1,120 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    /* custom cursor */
+    cursor: url(./assets/ball.png), auto;
+    scroll-behavior: smooth;
+}
+body {
+    overflow-x: hidden;
+}
+.black {
+    background-color: black !important;
+}
+
+.navbar {
+    position: fixed !important;
+    width: 100% !important;
+    z-index: 1;
+    font-weight: 600;
+}
+
+.navbar a {
+    transition: all .2s;
+}
+/* banner starts */
+header{
+    height: 25vh;
+    background:linear-gradient(to top, rgba(0,0,0,0.2),rgba(0,0,0,0.7)), url(./assets/images/m1.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+   
+   }
+   
+      
+   .banner-center{
+    height: 25vh;
+    color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 15px;
+    overflow: hidden;
+   }
+   
+   .banner-center h1{
+    font-size: 3rem;
+    padding-right: 90%;
+   }
+   
+   .banner-center p{
+   font-size: 2rem;
+   }
+   
+   
+   /* banner end */
+    
+ .class1{
+     overflow-y: hidden;
+     background-color: white;
+     height: 70px;
+     display: flex;
+     align-items: flex-start;
+     justify-content: left;
+     width: 100%;
+     font-size: 20px;
+ }  
+ .class2{
+     height: 20px;
+     width: 100%;
+     font-size: 20px;
+ }
+   
+ /* cards */
+.wrapper{
+    max-height: 210px;
+    border: 1px;
+    display: flex;
+    overflow-x: auto;
+    border-right: 1px solid black;
+}
+.wrapper .item{
+    min-width: 250px;
+    height: 110px;
+    line-height: 110px;
+    text-align: center;
+    background-color: whitesmoke;
+    border-radius: 1px solid black;
+    border-right: 1px solid rgba(0,0,0,0.253);
+}
+.wrapper .item1{
+    min-width: 510px;
+    height: 110px;
+    line-height: 110px;
+    justify-content: center;
+    text-align: center;
+    background-color: whitesmoke;
+    border-radius: 1px solid black;
+}
+.wrapper .item2{
+    min-width: 80px;
+    height: 110px;
+    line-height: 110px;
+    text-align: center;
+    background-color: whitesmoke;
+    border-radius: 1px solid black;
+}
+.wrapper .item3{
+    min-width: 240px;
+    height: 110px;
+    line-height: 110px;
+    text-align: center;
+    background-color: whitesmoke;
+    border-radius: 1px solid black;
+    border-right: 1px solid rgba(0,0,0,0.253);
+}
+

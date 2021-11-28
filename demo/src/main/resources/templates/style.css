@@ -1,0 +1,82 @@
+body {
+  background-image: url('https://media.istockphoto.com/photos/cricket-batsman-about-to-strike-ball-picture-id180868820?b=1&k=20&m=180868820&s=170667a&w=0&h=SGrEQh0JimF0R8-RFa5pbQSR6FxcoOOa2jv3eax15QQ=');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.Mainbtn {
+  background-color: #c0ded9;
+  color: black;
+  padding: 20px;
+  margin-left: 550px;
+  margin-bottom: 50px;
+  width: 20%;
+}
+.Mainbtn:hover {
+color: #c83349;
+background-color:  #8d9db6;
+}
+
+/* Form */
+
+.FormContainer {
+  left: 40%;
+  top: 60%;
+  margin-left: -10%;
+  position: absolute;
+  margin-top: -25%;
+  background-color: #f2f2f2;
+  padding: 100px;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: white;
+}
+
+
+/* Set a style for the submit button */
+.submitbtn {
+  background-color: #c0ded9;
+  color: black;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.submitbtn:hover {
+color: #c83349;
+background-color:  #8d9db6;
+}
+
+        .container{
+        max-width:1200px;
+        margin:auto;
+        background:#f2f2f2;
+        overflow:auto;
+        margin-bottom: 50px;
+        }
+
+        .gallery{
+        border:1px solid #ccc;
+        float: left;
+        width:390px;
+        }
+
+        .gallery img{
+        width:100%;
+        heigh:auto;
+        }
+        .desc{
+           padding:15px;
+           text-align:center;
+        }

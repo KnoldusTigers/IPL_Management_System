@@ -25,42 +25,35 @@
           <a class="nav-link "  th:href="@{'/viewMatch'}">Match</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link "  th:href="@{'/Admin'}">Admin</a>
+          <a class="nav-link "  th:href="@{'/login'}">Admin</a>
         </li>
         <li class="nav-item">
           <a class="nav-link "  th:href="@{'/showPlayers'}">Players</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link "   href="#">Result</a>
+          <a class="nav-link "   th:href="@{'/result'}">Result</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 <header>
-  <center><p> </p></center>
+  <div align="center" style="background-color:White;" >
+    <h1><b>IPL Management System</b></h1>
+  </div>>
+  <style>
+body {
+  background-image: url('https://i.pinimg.com/originals/98/6e/4f/986e4f807b13a475260314764215f9aa.jpg');
+    min-height: 380px;
 
-</header>
-<div align="center">
-  <h1><b>Teams</b></h1>
-<table class="table table-bordered" style="width:40%">
-  <tr>
-    <th>Team Name</th>
-    <th>Captian</th>
-    <th>States</th>
-  </tr>
-  <tr th:each="Team:${teamList}">
-    <td th:text="${Team.team_name}">
-<!--      <a th:href="@{/showPlayers/{team_id}(team_id=${Team.id})}">[[${Team.team_name}]]</a>-->
-    </td>
-    <td th:text="${Team.Captain}"></td>
-    <td th:text="${Team.state}"></td>
-
-  </tr>
-
-</table>
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+</style>
 
 
- </div>
 </body>
 </html>

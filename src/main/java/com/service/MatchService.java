@@ -3,6 +3,7 @@ package com.service;
 
 import com.dao.MatchRepo;
 import com.model.MatchModel;
+import com.model.PlayersModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +23,16 @@ public class MatchService {
 
         matchRepo.save(match_model);
     }
+    public MatchModel get(String Id){
+
+        return matchRepo.findById(Id).get();
+    }
+
+
+    public void delete(String id) {
+
+        matchRepo.deleteById(id);
+    }
+
 
 }

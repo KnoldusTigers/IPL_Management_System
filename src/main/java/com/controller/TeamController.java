@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -28,8 +29,8 @@ public class TeamController {
         model.addAttribute("Team",new TeamModel());
         return "addTeam";
     }
-    @RequestMapping(value="/save",method = RequestMethod.POST)
-    public String saveTeam(@ModelAttribute("Team") TeamModel tm){
+    @RequestMapping( value="/save",method = RequestMethod.POST)
+    public String saveTeam( @ModelAttribute("Team") TeamModel tm){
         service.save(tm);
         return "redirect:Admin";
     }

@@ -34,24 +34,41 @@
     <center><p> </p></center>
 
 </header>
-<h2 align="center" style="width:70%">Team 1</h2>
-<table  class="table" style="width:70%">
-    <thead class="thead-dark">
-    <tr>
-        <th>Player ID</th>
-        <th>Player Name</th>
-        <th>Team Name</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="Team:${tList}">
-        <td th:text="${Team.id}">  </td>
-        <td th:text="${Team.playername}"> </td>
-        <td th:text="${Team.teamname}"> </td>
-    </tr>
+<!--<h2 align="center" style="width:70%">Team 1</h2>-->
+<!--<table  class="table" style="width:70%">-->
+<!--    <thead class="thead-dark">-->
+<!--    <tr>-->
+<!--        <th>Player ID</th>-->
+<!--        <th>Player Name</th>-->
+<!--        <th>Team Name</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="Team:${tList}">-->
+<!--        <td th:text="${Team.id}">  </td>-->
+<!--        <td th:text="${Team.playername}"> </td>-->
+<!--        <td th:text="${Team.teamname}"> </td>-->
+<!--    </tr>-->
 
-    </tbody>
-</table>
+<!--    </tbody>-->
+<!--</table>-->
+<div class="row col-md-12">
+    <div th:each="Team : ${teamList}">
+        <div class="col-md-3">
+            <div class="card custom-card"
+                 style="width: 15rem; display: inline-block">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${Team.team_name}"></h5>
+                    <p class="card-text" th:text="${Team.captain}"></p>
+<!--                    <p class="card-text" th:text="${item.itemdescription}">Desc</p>-->
+<!--                    <a th:href="@{'/createforItemId/' + ${item.id}}"-->
+<!--                       class="stretched-link btn btn-sm btn-primary mr-2"><i-->
+<!--                            class="fas fa-rocket mr-2"></i> Start New Discussion</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <footer>
 
 </footer>

@@ -27,6 +27,7 @@ public class PlayerService {
 
 
     public void delete(int id) {
+
         prepo.deleteById(id);
     }
 

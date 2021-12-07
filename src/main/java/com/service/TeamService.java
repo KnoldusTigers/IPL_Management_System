@@ -9,8 +9,10 @@ import java.util.List;
 
 @Service
 public class TeamService {
+
     @Autowired
     private TeamRepo repo;
+
     public List<TeamModel> listAll(){
 
         return repo.findAll();

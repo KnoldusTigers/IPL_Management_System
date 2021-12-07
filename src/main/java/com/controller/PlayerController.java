@@ -74,7 +74,7 @@ public String viewTeams(@PathVariable String team_id, Model model){
     public ModelAndView showEditPllayer(@PathVariable(name = "id") int id) {
         ModelAndView modelAndView = new ModelAndView("addPlayers");
         PlayersModel playModel = playerservice.get(String.valueOf(id));
-        modelAndView.addObject("player", playModel);
+        modelAndView.addObject("Player", playModel);
         return modelAndView;
     }
     @RequestMapping("/delete/{id}")

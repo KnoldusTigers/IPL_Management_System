@@ -28,7 +28,7 @@
                     <a class="nav-link "  th:href="@{'/matchSchedule'}">Schedule Match</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  th:href="@{'/editPlayers'}">Players</a>
+                    <a class="nav-link"  th:href="@{'/editPlayers'}">Add Players</a>
                 </li>
 
             </ul>
@@ -44,11 +44,11 @@
             <div class="input-group">
                 <span class="input-group-text">Match ID</span>
                 <input type="text" aria-label="" class="form-control" th:field="*{matchid}" />
-                <td th:if="${#fields.hasErrors('matchid')}" th:errors="*{matchid}">match Id can't be null</td>
-              </div>
+
+            </div>
             <br>
             <div class="mb-3">
-                <label   class="form-label">Team-1</label>
+                <label   class="form-label">Team1</label>
                 <select th:field="*{team1}" class="custom-select">
                     <div th:each="team:${teamList}">
                         <option th:value="${team.id}" th:text="${team.team_name}"></option>
@@ -58,7 +58,7 @@
             <br>
 
             <div class="mb-3">
-                <label   class="form-label">Team 2</label>
+                <label   class="form-label">Team2</label>
                 <select th:field="*{team2}" class="custom-select">
                     <div th:each="team:${teamList}">
                         <option th:value="${team.id}" th:text="${team.team_name}"></option>
@@ -66,41 +66,32 @@
                 </select>
             </div>
 
-<!--            <div class="input-group">-->
-<!--                <span class="input-group-text ">Date And Time</span>-->
-<!--                <input type="text" aria-label="Name" class="form-control" th:field="*{date}" />-->
 
-<!--            </div>-->
-<br>
-            <div class="mb-3">
-             <label class="form-label">Date</label>
+            <!--            <div class="input-group">-->
+            <!--                <span class="input-group-text ">Date And Time</span>-->
+            <!--                <input type="text" aria-label="Name" class="form-control" th:field="*{date}" />-->
+
+            <!--            </div>-->
+
+            <label for="meeting-time"></label>
 
             <input type="datetime-local" id="meeting-time"
-                   name="meeting-time" value="2021-12-1T00:00"
-                   min="2021-06-07T00:00" max="2030-06-14T024:00" th:field="*{schedule_date}"/>
+                   name="meeting-time" value="2018-06-12T00:00"
+                   min="2018-06-07T00:00" max="2022-06-14T024:00" th:field="*{schedule_date}"/>
 
-            </div>
-
-            <script type="text/javascript">
- function checkDate() {
-   var selectedDate = document.getElementById('meeting-time').value;
-   var now = new Date();
-   if (selectedDate < now) {
-    alert("Date must be in the future");
-   }
- }
-</script>
 
             <style>label {
-    display: block;
-    font: 1rem 'Fira Sans', sans-serif;
-}
+                   display: block;
+                         font: 1rem 'Fira Sans', sans-serif;
+                               }
 
-input,
-label {
-    margin: .4rem 0;
-}
-</style>
+                         input,
+                           label {
+                                 margin: .4rem 0;
+                                }
+                               </style>
+
+
 
             <br>
             <div class="input-group">
@@ -108,12 +99,28 @@ label {
                 <input type="text" aria-label="Name" class="form-control" th:field="*{venue}" />
             </div>
             <br>
+            <div class="input-group">
+                <span class="input-group-text ">Team1 Description</span>
+                <input type="text" aria-label="Name" class="form-control" th:field="*{Team1_Description}" />
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-text ">Team2 Description</span>
+                <input type="text" aria-label="Name" class="form-control" th:field="*{Team2_Description}" />
+            </div>
+            <br>
 
 
-            <button type="submit" class="btn btn-info">Save</button>
+                            <br>
+                            <button type="submit" class="btn btn-info">Save</button>
+
+
+
 
         </form>
     </div>
+
+
 </div>
 </body>
 </html>

@@ -5,9 +5,6 @@ import com.model.PlayersModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.List;
-
 @Service
 public class PlayerService {
     @Autowired
@@ -16,11 +13,11 @@ public class PlayerService {
 ////        System.out.println(getPlayers());
 //         return (List<PlayersModel>) prepo.findAll();
 //    }
-    public void save(PlayersModel player_model){
+    public void save(final PlayersModel player_model) {
 
         prepo.save(player_model);
     }
-    public PlayersModel get(String Id){
+    public PlayersModel get(String Id) {
 
         return prepo.findById(Integer.valueOf(Id)).get();
     }

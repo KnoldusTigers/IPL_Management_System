@@ -1,32 +1,38 @@
 package com.model;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
-@Table(name="MatchScheduling")
+@Table(name = "MatchScheduling")
 public class MatchModel {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "matchid", nullable = false)
-    @NotNull
-    @Size(min=2, max=30)
-    private String matchid;
-    private String schedule_date;
+
+
+    private int matchid;
+     private String  schedule_date;
     private String venue;
     private String Team1_Description;
+    private String result;
 
 
     @ManyToOne
+    @JoinColumn(name = "states")
+    private StateModel stateModel;
+    @ManyToOne
     @JoinColumn(name = "team_id1")
     private TeamModel team1;
+
+    public StateModel getStateModel() {
+        return stateModel;
+    }
+
+    public void setStateModel(StateModel stateModel) {
+        this.stateModel = stateModel;
+    }
 
     @ManyToOne
     @JoinColumn(name = "team_id2")
@@ -36,7 +42,7 @@ public class MatchModel {
         return team1;
     }
 
-    public void setTeam1(TeamModel team1) {
+    public void setTeam1(final TeamModel team1) {
         this.team1 = team1;
     }
 
@@ -44,12 +50,9 @@ public class MatchModel {
         return team2;
     }
 
-    public void setTeam2(TeamModel team2) {
+    public void setTeam2(final TeamModel team2) {
         this.team2 = team2;
     }
-
-
-
 
     public String getTeam1_Description() {
         return Team1_Description;
@@ -77,17 +80,11 @@ public class MatchModel {
         this.schedule_date = schedule_date;
     }
 
-
-
-
-
-
-
-    public String getMatchid() {
+    public Integer getMatchid() {
         return matchid;
     }
 
-    public void setMatchid(String matchid) {
+    public void setMatchid(int matchid) {
         this.matchid = matchid;
     }
 
@@ -100,5 +97,12 @@ public class MatchModel {
         this.venue = venue;
     }
 
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
 
 }

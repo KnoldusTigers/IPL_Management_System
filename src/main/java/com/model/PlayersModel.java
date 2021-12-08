@@ -1,19 +1,21 @@
 package com.model;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity(name = "players")
-@Table(name="players")
+@Table(name = "players")
 public class PlayersModel  {
     @Id
-    @Column(name = "id", nullable = false )
-
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
     private int id;
-     private String player_name;
+    @NotNull
+    @Size(min=2, max=30, message = "name can't be blank")
+    private String player_name;
      private String player_team;
     private String player_role;
-    private int run;
-    private int wickets;
+
 
     @ManyToOne
     @JoinColumn(name = "team_id")
@@ -59,19 +61,4 @@ public class PlayersModel  {
         this.player_role = player_role;
     }
 
-    public int getRun() {
-        return run;
-    }
-
-    public void setRun(int run) {
-        this.run = run;
-    }
-
-    public int getWickets() {
-        return wickets;
-    }
-
-    public void setWickets(int wickets) {
-        this.wickets = wickets;
-    }
 }

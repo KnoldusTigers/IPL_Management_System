@@ -6,52 +6,35 @@ import java.util.Set;
 
 
 @Entity
-@Table(name="team")
+@Table(name = "team")
  public class TeamModel {
     @Id
-    @Column(name = "id", nullable = false )
-
-
-
+    @Column(name = "id", nullable = false)
     private  String id;
-    public String team_name;
-    public String state;
-    public String captain;
+   private String team_name;
+    private String state;
+    private String captain;
 
-@OneToMany(mappedBy = "team1",fetch = FetchType.LAZY,cascade=CascadeType.ALL)
+@OneToMany(mappedBy = "team1", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 private Set<MatchModel> addteam1;
 
-    @OneToMany(mappedBy = "team2",fetch = FetchType.LAZY,cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "team2", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<MatchModel> addteam2;
-
-
-
-
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-
-
-    public String getCaptain() {
-        return captain;
-    }
-
-    public void setCaptain(String captain) {
-        this.captain = captain;
-    }
-
-
-
 
     @OneToMany(mappedBy = "team")
     List<PlayersModel> playersModel;
 
+    @OneToMany(mappedBy = "team")
+    List<PointModel> pointModels;
+
+
+    public List<PointModel> getPointModels() {
+        return pointModels;
+    }
+
+    public void setPointModels(List<PointModel> pointModels) {
+        this.pointModels = pointModels;
+    }
 
     public String getId() {
 
@@ -78,14 +61,34 @@ private Set<MatchModel> addteam1;
         this.playersModel = playersModel;
     }
 
+    public String getState() {
+        return state;
+    }
 
-//constructer
-    public TeamModel(  String team_name, List<PlayersModel> playersModel) {
+    public void setState(String state) {
+        this.state = state;
+    }
+
+
+
+    public String getCaptain() {
+        return captain;
+    }
+
+    public void setCaptain(String captain) {
+        this.captain = captain;
+    }
+
+
+
+    //constructer
+    public TeamModel(String team_name, Set<MatchModel> addteam2, List<PlayersModel> playersModel) {
 
         this.team_name = team_name;
+        this.addteam2 = addteam2;
         this.playersModel = playersModel;
     }
-    public TeamModel(){
+    public TeamModel() {
 
     }
 }

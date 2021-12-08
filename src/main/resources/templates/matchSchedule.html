@@ -28,9 +28,11 @@
                     <a class="nav-link "  th:href="@{'/matchSchedule'}">Schedule Match</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  th:href="@{'/editPlayers'}">Players</a>
+                    <a class="nav-link"  th:href="@{'/editPlayers'}">Edit Players</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link"  th:href="@{'/editMatch'}">Edit Match</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -41,14 +43,16 @@
     <br />
     <div class="col-sm-4">
         <form action="#" th:action="@{/SaveMatch}" th:object="${match}" method="post">
-            <div class="input-group">
-                <span class="input-group-text">Match ID</span>
-                <input type="text" aria-label="" class="form-control" th:field="*{matchid}" />
-                <td th:if="${#fields.hasErrors('matchid')}" th:errors="*{matchid}">match Id can't be null</td>
-              </div>
+<!--            <div class="input-group">-->
+<!--                <span class="input-group-text">Match ID</span>-->
+<!--                <input type="text" aria-label="" class="form-control"   />-->
+
+
+<!--                <td th:if="${#fields.hasErrors('matchid')}" th:errors="*{matchid}">match Id can't be null</td>-->
+
             <br>
             <div class="mb-3">
-                <label   class="form-label">Team-1</label>
+                <label   class="form-label">Team 1</label>
                 <select th:field="*{team1}" class="custom-select">
                     <div th:each="team:${teamList}">
                         <option th:value="${team.id}" th:text="${team.team_name}"></option>
@@ -73,22 +77,30 @@
 <!--            </div>-->
 <br>
             <div class="mb-3">
-             <label class="form-label">Date</label>
-
-            <input type="datetime-local" id="meeting-time"
-                   name="meeting-time" value="2021-12-1T00:00"
-                   min="2021-06-07T00:00" max="2030-06-14T024:00" th:field="*{schedule_date}"/>
+                <label class="form-label">Date</label>
+                <input type="datetime-local" name="meeting-time" th:id="meeting-time"
+                       min="2021-06-07T00:00" max="2030-06-14T024:00" th:field="*{schedule_date}"/>
 
             </div>
 
-            <script type="text/javascript">
- function checkDate() {
-   var selectedDate = document.getElementById('meeting-time').value;
-   var now = new Date();
-   if (selectedDate < now) {
-    alert("Date must be in the future");
-   }
- }
+            <script th:inline="javascript">
+    // function checkDate() {
+    //     var selectedDate = document.getElementById('meeting-time').value;
+    //     var now = new Date();
+    //     if (selectedDate < now) {
+    //         alert("Date must be in the future");
+    //     }
+    // }
+
+    window.onload = function(){
+        elem = document.getElementById("meeting-time")
+        var iso = new Date().toISOString();
+        console.log("Yeaaa I am running::::::::");
+        var minDate = iso.substring(0,iso.length-1);
+        elem.value = minDate
+        elem.min = minDate
+    };
+
 </script>
 
             <style>label {
@@ -101,11 +113,19 @@ label {
     margin: .4rem 0;
 }
 </style>
-
             <br>
-            <div class="input-group">
-                <span class="input-group-text ">Venue</span>
-                <input type="text" aria-label="Name" class="form-control" th:field="*{venue}" />
+<!--            <div class="input-group">-->
+<!--                <span class="input-group-text ">Venue</span>-->
+<!--                <input type="text" aria-label="Name" class="form-control" th:field="*{venue}" />-->
+<!--            </div>-->
+
+            <div class="mb-3">
+                <label   class="form-label">Venue</label>
+                <select th:field="*{stateModel}" class="custom-select">
+                    <div th:each="states:${stateList}">
+                        <option th:value="${states.id}" th:text="${states.venue}"></option>
+                    </div>
+                </select>
             </div>
             <br>
 

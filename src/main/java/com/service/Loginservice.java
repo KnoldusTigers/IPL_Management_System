@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class Loginservice {
     @Autowired
-    LoginRepository loginRepository;
-    public Login login(String username,String password){
+   private LoginRepository loginRepository;
+    public Login login(final String username, final String password) {
         Login user = loginRepository.findByUsernameAndPassword(username, password);
         return user;
 

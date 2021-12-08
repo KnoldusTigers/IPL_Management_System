@@ -17,20 +17,21 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link"  th:href="@{'/matchSchedule'}">Matches</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{'/Teams'}">Teams</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link "  th:href="@{'/viewMatch'}">View Match</a>
+                    <a class="nav-link "  th:href="@{'/viewMatch'}">Match</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link "  th:href="@{'/Admin'}">Admin</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link "  th:href="@{'/showPlayers'}">Players</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link "   th:href="@{'/result'}">Result</a>
                 </li>
             </ul>
         </div>
@@ -53,14 +54,14 @@
         <td bgcolor="white" th:text="${player.player_name}">
             <!--      <a th:href="@{/showPlayers/{team_id}(team_id=${Team.id})}">[[${Team.team_name}]]</a>-->
         </td>
-        <td bgcolor="white" th:text="${player.player_team}"></td>
+         <td bgcolor="white" th:text="${player.team.team_name}"></td>
 
 </table>
 </div>
 <style>
 body {
-background-image: url('https://i.pinimg.com/originals/98/6e/4f/986e4f807b13a475260314764215f9aa.jpg');
-min-height: 380px;
+  background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1605&q=80');
+    min-height: 380px;
 
 /* Center and scale the image nicely */
 background-position: center;

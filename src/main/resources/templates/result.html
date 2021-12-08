@@ -56,8 +56,8 @@
         </tr>
         <tr th:each="match:${matchModelsList}">
 
-            <td bgcolor="white" th:text="${match.team1}"></td>
-            <td bgcolor="white" th:text="${match.team2}"></td>
+            <td bgcolor="white" th:text="${match.team1.team_name}"></td>
+            <td bgcolor="white" th:text="${match.team2.team_name}"></td>
             <td bgcolor="white" th:text="${match.schedule_date}"></td>
             <td bgcolor="white" th:text="${match.venue}"></td>
             <td bgcolor="white" th:text="${match.Team1_Description}"></td>
@@ -70,7 +70,7 @@
 
     <style>
 body {
-  background-image: url('https://i.pinimg.com/originals/98/6e/4f/986e4f807b13a475260314764215f9aa.jpg');
+   background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1605&q=80');
     min-height: 380px;
 
   /* Center and scale the image nicely */

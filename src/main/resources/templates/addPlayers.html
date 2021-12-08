@@ -28,9 +28,11 @@
                     <a class="nav-link "  th:href="@{'/matchSchedule'}">Schedule Match</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  th:href="@{'/editPlayers'}">Players</a>
+                    <a class="nav-link"  th:href="@{'/editPlayers'}">Edit Players</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link"  th:href="@{'/editMatch'}">Edit Match</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -42,50 +44,46 @@
     <br />
     <div class="col-sm-4">
         <form action="#" th:action="@{/Save}" th:object="${Player}" method="post">
-            <div class="input-group">
-                <span class="input-group-text">Player ID</span>
-                <input type="text" aria-label="ID" class="form-control" th:field="*{id}" />
 
-            </div>
             <br>
             <div class="input-group">
                 <span class="input-group-text ">Player Name</span>
                 <input type="text" aria-label="Name" class="form-control" th:field="*{player_name}" />
+                <td th:if="${#fields.hasErrors('player_name')}" th:errors="*{player_name}">player name can't be null</td>
 
             </div>
             <br>
             <div class="input-group">
-                <span class="input-group-text ">Player Team</span>
-                <input type="text" aria-label="Name" class="form-control" th:field="*{player_team}" />
-
+                <label   class="form-label">Team: </label>
+                <select th:field="*{player_team}" class="custom-select">
+                    <div th:each="team:${teamList}">
+                        <option th:value="${team.id}" th:text="${team.team_name}"></option>
+                    </div>
+                </select>
             </div>
             <br>
             <div class="input-group">
                 <span class="input-group-text ">Player Role</span>
                 <input type="text" aria-label="Name" class="form-control" th:field="*{player_role}" />
-
             </div>
+<br>
+
+                <br>
+                <div class="input-group">
+                    <label   class="form-label">Team Id</label>
+                    <select th:field="*{team}" class="custom-select">
+                        <div th:each="team:${teamList}">
+                            <option th:value="${team.id}" th:text="${team.id}"></option>
+                        </div>
+                    </select>
+                </div>
             <br>
-            <div class="input-group">
-                <span class="input-group-text ">Runs</span>
-                <input type="text" aria-label="Name" class="form-control" th:field="*{run}" />
 
-            </div>
-            <br>
-            <div class="input-group">
-                <span class="input-group-text ">Wickets</span>
-                <input type="text" aria-label="Name" class="form-control" th:field="*{wickets}" />
-
-            </div>
-            <div class="input-group">
-                <span class="input-group-text ">Team Id</span>
-                <input type="text" aria-label="Name" class="form-control" th:field="*{team}" />
-
-            </div>
-            <br>
+                <br>
             <button type="submit" class="btn btn-info">Save</button>
 
         </form>
+
     </div>
 </div>
 </body>

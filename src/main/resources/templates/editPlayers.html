@@ -27,12 +27,13 @@
                     <a class="nav-link "  th:href="@{'/matchSchedule'}">Schedule Match</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  th:href="@{'/editPlayers'}">Players</a>
+                    <a class="nav-link"  th:href="@{'/editPlayers'}">Edit Players</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link"  th:href="@{'/editMatch'}">Edit Match</a>
+                </li>
             </ul>
         </div>
-
     </div>
 </nav>
 <tr>
@@ -52,7 +53,7 @@
         <td th:text="${player.player_name}">
             <!--      <a th:href="@{/showPlayers/{team_id}(team_id=${Team.id})}">[[${Team.team_name}]]</a>-->
         </td>
-        <td th:text="${player.player_team}"></td>
+        <td th:text="${player.team.team_name}"></td>
         <td>
             <a th:href="@{'/edit/' + ${player.id}}">Edit</a>
         </td>

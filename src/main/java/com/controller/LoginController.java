@@ -1,6 +1,4 @@
 package com.controller;
-
-
 import com.model.Login;
 import com.service.Loginservice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +28,7 @@ import java.util.Objects;
     }
 
     @PostMapping("/login")
-    public String login(@Valid @ModelAttribute("user") Login user, BindingResult result) {
+    public String login(@Valid @ModelAttribute("user") final Login user, BindingResult result) {
 
         Login loginUser = userService.login(user.getUsername(), user.getPassword());
 

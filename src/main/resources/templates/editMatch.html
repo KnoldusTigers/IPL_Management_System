@@ -17,22 +17,23 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
-
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{'/Teams'}">Teams</a>
+                    <a class="nav-link"  th:href="@{'/addTeam'}">Add Team</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link "  th:href="@{'/viewMatch'}">Match</a>
+                    <a class="nav-link" th:href="@{'/addPlayers'}">Add Players</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link "  th:href="@{'/Admin'}">Admin</a>
+                    <a class="nav-link "  th:href="@{'/matchSchedule'}">Schedule Match</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link "  th:href="@{'/showPlayers'}">Add Players</a>
+                    <a class="nav-link"  th:href="@{'/editPlayers'}">Edit Players</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  th:href="@{'/editMatch'}">Edit Match</a>
                 </li>
             </ul>
         </div>
-
     </div>
 </nav>
 
@@ -52,16 +53,17 @@
             <th>Venue</th>
             <th>Team1 Score</th>
             <th>Team2 Score</th>
+            <th>Result</th>
 
         </tr>
         <tr th:each="match:${matchModelsList}">
-
             <td bgcolor="white" th:text="${match.team1.team_name}"></td>
-            <td bgcolor="white" th:text="${match.team2.team_name}"></td>
+             <td bgcolor="white" th:text="${match.team2.team_name}"></td>
             <td bgcolor="white" th:text="${match.schedule_date}"></td>
-            <td bgcolor="white" th:text="${match.venue}"></td>
+            <td bgcolor="white" th:text="${match.stateModel.venue}"></td>
             <td bgcolor="white" th:text="${match.Team1_Description}"></td>
             <td bgcolor="white" th:text="${match.Team2_Description}"></td>
+            <td bgcolor="white" th:text="${match.result}"></td>
 
             <td bgcolor="white">
                 <a   th:href="@{'/editmatch/' + ${match.matchid}}">Edit</a>
@@ -75,7 +77,7 @@
 
     <style>
 body {
-  background-image: url('https://i.pinimg.com/originals/98/6e/4f/986e4f807b13a475260314764215f9aa.jpg');
+  background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1605&q=80');
     min-height: 380px;
 
   /* Center and scale the image nicely */

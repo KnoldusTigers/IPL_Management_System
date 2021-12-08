@@ -6,68 +6,67 @@ import com.model.PlayersModel;
 import com.model.TeamModel;
 
 import com.service.PlayerService;
+import com.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 
+import javax.validation.Valid;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Controller
 public class PlayerController {
     @Autowired
     private PlayerService playerservice;
+    @Autowired
+    private TeamService teamservice;
 
-//    @GetMapping("/")
-//    public String viewHomePage(Model model) {
-//
-//        List<PlayersModel> playerList = playerservice.listAll();
-//        model.addAttribute("playerList", playerList);
-//
-//        return "index";
-//    }
-//@GetMapping(value="/addPlayers")
-//public String add(Model model){
-//    model.addAttribute("Player",new PlayersModel());
-//    return "addPlayers";
-//}
-//
-@GetMapping(value="/addPlayers")
-public String add(Model model){
-    model.addAttribute("Player",new PlayersModel());
+@GetMapping(value = "/addPlayers")
+public String add(Model model) {
+    model.addAttribute("Player", new PlayersModel());
+    List<TeamModel> teamList = teamservice.listAll();
+    model.addAttribute("teamList", teamList);
     return "addPlayers";
 }
-    @RequestMapping(value="/Save",method = RequestMethod.POST)
-    public String savePlayer(@ModelAttribute("Player") PlayersModel pm){
-        playerservice.save(pm);
-        return "redirect:/";
+    @RequestMapping(value = "/Save", method = RequestMethod.POST)
+    public String savePlayer(@Valid @ModelAttribute("Player") final PlayersModel pm, BindingResult result) {
+
+        if (result.hasErrors()) {
+            return "redirect:addPlayers";
+        } else {
+            playerservice.save(pm);
+            return "redirect:showPlayers";
+
+        }
     }
 
     @Autowired
-    PlayerRepo playerRepo;
-@GetMapping(value ="/showPlayers/{team_id}")
-public String viewTeams(@PathVariable String team_id, Model model){
+    private PlayerRepo playerRepo;
+@GetMapping(value = "/showPlayers/{team_id}")
+public String viewTeams(@PathVariable String team_id, Model model) {
     List<PlayersModel> playerList =   playerRepo.findByTeamId(team_id);
     model.addAttribute("playerList",  playerList);
 
     return "showPlayers";
 }
-    @GetMapping(value ="/showPlayers")
-    public String getAllPlayers( Model model){
+    @GetMapping(value = "/showPlayers")
+    public String getAllPlayers(final Model model) {
         List<PlayersModel> playerList = (List<PlayersModel>) playerRepo.findAll();
         model.addAttribute("playerList",  playerList);
 
         return "showPlayers";
     }
-    @GetMapping(value ="/editPlayers")
-    public String getAllPlayersForEdit( Model model){
+    @GetMapping(value = "/editPlayers")
+    public String getAllPlayersForEdit(final Model model) {
         List<PlayersModel> playerList = (List<PlayersModel>) playerRepo.findAll();
         model.addAttribute("playerList",  playerList);
-
+        List<TeamModel> teamList = teamservice.listAll();
+        model.addAttribute("teamList", teamList);
         return "editPlayers";
     }
     @RequestMapping("/edit/{id}")

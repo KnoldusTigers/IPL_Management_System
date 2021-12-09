@@ -11,6 +11,7 @@ public class PointModel {
     @ManyToOne
     @JoinColumn(name = "team_id")
     private TeamModel team;
+
    private int winCount;
    private int lossCount;
    private int matchCount;

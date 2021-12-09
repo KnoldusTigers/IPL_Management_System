@@ -15,14 +15,6 @@ public class TeamController {
     @Autowired
     private TeamService service;
 
-    @GetMapping("/")
-    public String viewHomePage(final Model model) {
-
-        List<TeamModel> teamList = service.listAll();
-        model.addAttribute("teamList", teamList);
-
-     return "index";
-    }
 
     @GetMapping(value = "/addTeam")
     public String add(final Model model) {

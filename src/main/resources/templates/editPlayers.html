@@ -47,13 +47,15 @@
     <tr>
         <th>Player Name</th>
         <th>Player Team</th>
-
+        <th>Player Role</th>
     </tr>
     <tr th:each="player:${playerList}">
         <td th:text="${player.player_name}">
             <!--      <a th:href="@{/showPlayers/{team_id}(team_id=${Team.id})}">[[${Team.team_name}]]</a>-->
         </td>
         <td th:text="${player.team.team_name}"></td>
+        <td th:text="${player.player_role}"></td>
+
         <td>
             <a th:href="@{'/edit/' + ${player.id}}">Edit</a>
         </td>

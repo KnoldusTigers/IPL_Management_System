@@ -10,7 +10,8 @@ import java.util.Set;
  public class TeamModel {
     @Id
     @Column(name = "id", nullable = false)
-    private  String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private  Long id;
    private String team_name;
     private String state;
     private String captain;
@@ -36,12 +37,12 @@ private Set<MatchModel> addteam1;
         this.pointModels = pointModels;
     }
 
-    public String getId() {
+    public Long getId() {
 
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

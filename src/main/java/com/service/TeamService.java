@@ -20,9 +20,9 @@ public class TeamService {
 
         repo.save(Teams);
     }
-    public TeamModel get(String Id) {
+    public TeamModel get(Long Id) {
 
-        return repo.findById(String.valueOf(Id)).get();
+        return repo.findById((Id)).get();
     }
 
 }

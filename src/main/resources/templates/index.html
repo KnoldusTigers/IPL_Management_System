@@ -42,6 +42,27 @@
     <h1><b>IPL Management System</b></h1>
   </div>
 </header>
+
+<table class="table table-bordered" bgcolor="grey"  style="width:40%" >
+  <tr>
+    <th>Team Name</th>
+    <th>matchCount</th>
+    <th>winCount</th>
+    <th>lossCount</th>
+    <th>point</th>
+  </tr>
+  <tr th:each="pot:${pointlist}" >
+    <td bgcolor="white" th:text="${pot.team.team_name}"></td>
+    <td bgcolor="white" th:text="${pot.matchCount}"></td>
+    <td bgcolor="white" th:text="${pot.winCount}"></td>
+    <td bgcolor="white" th:text="${pot.lossCount}"></td>
+    <td bgcolor="white" th:text="${pot.point}"></td>
+
+
+  </tr>
+
+</table>
+
   <style>
 body {
   background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1605&q=80');

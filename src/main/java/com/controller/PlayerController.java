@@ -7,6 +7,8 @@ import com.model.TeamModel;
 
 import com.service.PlayerService;
 import com.service.TeamService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,11 +23,14 @@ import java.util.List;
 
 @Controller
 public class PlayerController {
+    private static final Logger logger = LoggerFactory.getLogger(PlayerController.class);
+
     @Autowired
     private PlayerService playerservice;
     @Autowired
     private TeamService teamservice;
 
+    //add new players
 @GetMapping(value = "/addPlayers")
 public String add(Model model) {
     model.addAttribute("Player", new PlayersModel());
@@ -33,12 +38,17 @@ public String add(Model model) {
     model.addAttribute("teamList", teamList);
     return "addPlayers";
 }
+
+//save player
     @RequestMapping(value = "/Save", method = RequestMethod.POST)
     public String savePlayer(@Valid @ModelAttribute("Player") final PlayersModel pm, BindingResult result) {
 
         if (result.hasErrors()) {
-            return "redirect:addPlayers";
-        } else {
+            logger.info("Validation errors while submitting form.");
+             return "addPlayers";
+
+        }
+        else {
             playerservice.save(pm);
             return "redirect:showPlayers";
 
@@ -47,8 +57,9 @@ public String add(Model model) {
 
     @Autowired
     private PlayerRepo playerRepo;
+
 @GetMapping(value = "/showPlayers/{team_id}")
-public String viewTeams(@PathVariable String team_id, Model model) {
+public String viewTeams(@PathVariable Long team_id, Model model) {
     List<PlayersModel> playerList =   playerRepo.findByTeamId(team_id);
     model.addAttribute("playerList",  playerList);
 
@@ -71,9 +82,11 @@ public String viewTeams(@PathVariable String team_id, Model model) {
     }
     @RequestMapping("/edit/{id}")
     public ModelAndView showEditPllayer(@PathVariable(name = "id") int id) {
-        ModelAndView modelAndView = new ModelAndView("addPlayers");
+        ModelAndView modelAndView = new ModelAndView("updatePlayer");
         PlayersModel playModel = playerservice.get(String.valueOf(id));
         modelAndView.addObject("Player", playModel);
+        List<TeamModel> teamList = teamservice.listAll();
+        modelAndView.addObject("teamList", teamList);
         return modelAndView;
     }
     @RequestMapping("/delete/{id}")

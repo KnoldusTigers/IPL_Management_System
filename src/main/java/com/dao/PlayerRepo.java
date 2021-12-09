@@ -15,7 +15,7 @@ public interface PlayerRepo extends CrudRepository<PlayersModel, Integer> {
 
  //@Query(value = "select player_name from players  where players.team_id=team.team_id", nativeQuery = true)
 //
-  List<PlayersModel> findByTeamId(String team_id);
+  List<PlayersModel> findByTeamId(Long team_id);
  //  public List<PlayersModel> getAllPlayers();
 
 }

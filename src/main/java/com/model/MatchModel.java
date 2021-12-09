@@ -1,10 +1,11 @@
 package com.model;
+import com.validations.MatchValidation;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "MatchScheduling")
+@MatchValidation(message = "team1 or team2 can't be same")
 public class MatchModel {
 
     @Id
@@ -12,19 +13,23 @@ public class MatchModel {
     @Column(name = "matchid", nullable = false)
 
 
-    private int matchid;
+     private int matchid;
      private String  schedule_date;
     private String venue;
     private String Team1_Description;
+    private String Team2_Description;
     private String result;
-
-
     @ManyToOne
     @JoinColumn(name = "states")
     private StateModel stateModel;
-    @ManyToOne
+
+     @ManyToOne
     @JoinColumn(name = "team_id1")
-    private TeamModel team1;
+     private TeamModel team1;
+
+      @ManyToOne
+    @JoinColumn(name = "team_id2")
+    private TeamModel team2;
 
     public StateModel getStateModel() {
         return stateModel;
@@ -34,9 +39,6 @@ public class MatchModel {
         this.stateModel = stateModel;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "team_id2")
-    private TeamModel team2;
 
     public TeamModel getTeam1() {
         return team1;
@@ -70,7 +72,6 @@ public class MatchModel {
         Team2_Description = team2_Description;
     }
 
-    private String Team2_Description;
 
     public String getSchedule_date() {
         return schedule_date;

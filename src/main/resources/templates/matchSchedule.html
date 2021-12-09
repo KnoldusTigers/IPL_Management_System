@@ -56,8 +56,11 @@
                 <select th:field="*{team1}" class="custom-select">
                     <div th:each="team:${teamList}">
                         <option th:value="${team.id}" th:text="${team.team_name}"></option>
+                        <td th:if="${#fields.hasErrors('team1')}" th:errors="*{team1}">team1 and team2 can't be same</td>
+
                     </div>
                 </select>
+
             </div>
             <br>
 
@@ -65,9 +68,11 @@
                 <label   class="form-label">Team 2</label>
                 <select th:field="*{team2}" class="custom-select">
                     <div th:each="team:${teamList}">
-                        <option th:value="${team.id}" th:text="${team.team_name}"></option>
+                        <option th:value="${team.id}" th:text="${team.team_name}"> </option>
                     </div>
                 </select>
+                <td th:if="${#fields.hasErrors('team2')}" th:errorclass="error" th:errors="*{team2}">team1 and team2 can't be same</td>
+
             </div>
 
 <!--            <div class="input-group">-->
@@ -102,12 +107,14 @@
     };
 
 </script>
-
-            <style>label {
+            <style>
+            label {
     display: block;
     font: 1rem 'Fira Sans', sans-serif;
 }
-
+.error{
+color: red
+}
 input,
 label {
     margin: .4rem 0;

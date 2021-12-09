@@ -11,9 +11,11 @@ public class PlayersModel  {
     @Column(name = "id", nullable = false)
     private int id;
     @NotNull
-    @Size(min=2, max=30, message = "name can't be blank")
+    @Size(min=2, max=30)
     private String player_name;
-     private String player_team;
+//     private String player_team;
+    @NotNull(message = "role can't be blank")
+    @Size(min=2, max=30)
     private String player_role;
 
 
@@ -45,13 +47,13 @@ public class PlayersModel  {
         this.player_name = player_name;
     }
 
-    public String getPlayer_team() {
-        return player_team;
-    }
-
-    public void setPlayer_team(String player_team) {
-        this.player_team = player_team;
-    }
+//    public String getPlayer_team() {
+//        return player_team;
+//    }
+//
+//    public void setPlayer_team(String player_team) {
+//        this.player_team = player_team;
+//    }
 
     public String getPlayer_role() {
         return player_role;

@@ -40,14 +40,20 @@
 
 
 <div align="center">
-    <h1>Add New Players</h1>
+    <h1>Update Player</h1>
     <br />
     <div class="col-sm-4">
         <form action="#" th:action="@{/Save}" th:object="${Player}" method="post">
 
             <div class="input-group">
-                <span class="input-group-text ">Player Name</span>
-                <input type="text" aria-label="Name" class="form-control" th:field="*{player_name}" />
+                <span class="input-group-text "  >ID</span>
+                <input type="text" aria-label="Name" readonly class="form-control" th:field="*{id}" />
+
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-text "  >Player Name</span>
+                <input type="text" aria-label="Name" readonly class="form-control" th:field="*{player_name}" />
                 <td th:if="${#fields.hasErrors('player_name')}" th:errors="*{player_name}">name not null</td>
 
             </div>
@@ -63,22 +69,29 @@
             </div>
             <br>
             <div class="input-group">
-                <span class="input-group-text ">Player Role</span>
-                <input type="text" aria-label="Name" class="form-control" th:field="*{player_role}" />
+                <label for="players">Player Role</label>
+
+                <select th:field="*{player_role}"  id="players">
+
+                    <option value="Batsman">Batsman</option>
+                    <option value="Bowler">Bowler</option>
+                    <option value="All Rounder">All Rounder</option>
+
+                </select>
                 <div class="alert alert-warning" th:if="${#fields.hasErrors('player_role')}" th:errors="*{player_role}">name not null</div>
 
             </div>
             <br>
 
-<!--            <br>-->
-<!--            <div class="input-group">-->
-<!--                <label   class="form-label">Team Id</label>-->
-<!--                <select th:field="*{team}" class="custom-select">-->
-<!--                    <div th:each="team:${teamList}">-->
-<!--                        <option th:value="${team.id}" th:text="${team.id}"></option>-->
-<!--                    </div>-->
-<!--                </select>-->
-<!--            </div>-->
+            <!--            <br>-->
+            <!--            <div class="input-group">-->
+            <!--                <label   class="form-label">Team Id</label>-->
+            <!--                <select th:field="*{team}" class="custom-select">-->
+            <!--                    <div th:each="team:${teamList}">-->
+            <!--                        <option th:value="${team.id}" th:text="${team.id}"></option>-->
+            <!--                    </div>-->
+            <!--                </select>-->
+            <!--            </div>-->
             <br>
 
             <br>

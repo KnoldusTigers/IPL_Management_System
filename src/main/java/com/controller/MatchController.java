@@ -55,20 +55,23 @@ private StateService stateService;
     @RequestMapping(value = "/SaveMatch", method = RequestMethod.POST)
     public String saveMatch(@Valid @ModelAttribute("match") MatchModel match, final BindingResult result) {
 //System.out.println(match.getTeam1_Description());
-//        if (result.hasErrors()) {
-//            return "matchSchedule";}
-//        else {
-//            match=reservice.getResult(match);
-//            System.out.println(match.getResult()+"==========================================================");
+        if (result.hasErrors()) {
+            return "redirect:matchSchedule";}
+        else {
+            //match=reservice.getResult(match);
+            // System.out.println(match.getResult()+"==========================================================");
+
             matchService.save(match);
             return "redirect:viewMatch";
+        }
         }
 
     @RequestMapping(value = "/SaveScore", method = RequestMethod.POST)
     public String updatescore(@Valid @ModelAttribute("match") MatchModel match, final BindingResult result) {
         System.out.println(match.getTeam1_Description());
         if (result.hasErrors()) {
-            return "matchSchedule";}
+            return "matchSchedule";
+        }
         else {
             match=reservice.getResult(match);
             System.out.println(match.getResult()+"==========================================================");

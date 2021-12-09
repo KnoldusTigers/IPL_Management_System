@@ -6,6 +6,8 @@ import com.model.PointModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class resultservice {
 @Autowired
@@ -13,19 +15,33 @@ private PointRepo pointRepo;
 
 
 public MatchModel getResult(MatchModel matchModel){
-    PointModel pointModel1=new PointModel();
-    PointModel pointModel2=new PointModel();
-    pointModel1.setPoint(0);
-    pointModel1.setWinCount(0);
-    pointModel1.setLossCount(0);
-    pointModel1.setMatchCount(0);
-    pointModel1.setTeam(matchModel.getTeam1());
+
+
+    Long teamId1=matchModel.getTeam1().getId();
+    Long teamId2=matchModel.getTeam2().getId();
+    PointModel pointModel1= pointRepo.findByTeamId(teamId1);
+    PointModel pointModel2= pointRepo.findByTeamId(teamId2);
+System.out.println(teamId1+"  "+teamId2);
+    if(pointModel1==null) {
+        pointModel1=new PointModel();
+        pointModel1.setPoint(0);
+        pointModel1.setWinCount(0);
+        pointModel1.setLossCount(0);
+        pointModel1.setMatchCount(0);
+        pointModel1.setTeam(matchModel.getTeam1());
+    }
+
+    if(pointModel2==null) {
+        pointModel2=new PointModel();
+        pointModel2.setPoint(0);
+        pointModel2.setWinCount(0);
+        pointModel2.setLossCount(0);
+        pointModel2.setMatchCount(0);
+        pointModel2.setTeam(matchModel.getTeam2());
+    }
+
     //
-    pointModel2.setPoint(0);
-    pointModel2.setWinCount(0);
-    pointModel2.setLossCount(0);
-    pointModel2.setMatchCount(0);
-    pointModel2.setTeam(matchModel.getTeam2());
+
     String team1[]=matchModel.getTeam1_Description().split("/");
     int team1Score= Integer.parseInt(team1[0]);
     int wicket1= Integer.parseInt(team1[1]);
@@ -42,6 +58,7 @@ public MatchModel getResult(MatchModel matchModel){
         pointModel2.setLossCount(pointModel2.getLossCount()+1);
         pointModel1.setPoint(pointModel1.getPoint()+2);
         pointModel1.setMatchCount(pointModel1.getMatchCount()+1);
+        pointModel2.setMatchCount(pointModel2.getMatchCount()+1);
 
 
         System.out.println("===============--------------------------------------==============="+ matchModel.getResult());
@@ -53,6 +70,7 @@ public MatchModel getResult(MatchModel matchModel){
         pointModel2.setWinCount(pointModel2.getWinCount()+1);
         pointModel1.setLossCount(pointModel1.getLossCount()+1);
         pointModel2.setPoint(pointModel2.getPoint()+2);
+        pointModel1.setMatchCount(pointModel1.getMatchCount()+1);
         pointModel2.setMatchCount(pointModel2.getMatchCount()+1);
 
         System.out.println("===============-------------===========-------------------------==============="+ matchModel.getResult());
@@ -63,6 +81,10 @@ public MatchModel getResult(MatchModel matchModel){
 
     return matchModel;
 }
+ public List<PointModel> getPoint(){
+
+    return   pointRepo.findAll();
+ }
 
 
 }

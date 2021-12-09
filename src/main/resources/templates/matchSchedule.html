@@ -1,16 +1,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
-    <title> </title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
-    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css"/>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">IPL Management System</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -19,19 +20,19 @@
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  th:href="@{'/addTeam'}">Add Team</a>
+                    <a class="nav-link" th:href="@{'/addTeam'}">Add Team</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{'/addPlayers'}">Add Players</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link "  th:href="@{'/matchSchedule'}">Schedule Match</a>
+                    <a class="nav-link " th:href="@{'/matchSchedule'}">Schedule Match</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  th:href="@{'/editPlayers'}">Edit Players</a>
+                    <a class="nav-link" th:href="@{'/editPlayers'}">Edit Players</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  th:href="@{'/editMatch'}">Edit Match</a>
+                    <a class="nav-link" th:href="@{'/editMatch'}">Edit Match</a>
                 </li>
             </ul>
         </div>
@@ -40,55 +41,47 @@
 <br><br>
 <div align="center">
     <div class="register"><br>
-    <h1><b>Match Schedule</b></h1>
-    <div class="col-sm-4">
-        <form action="#" th:action="@{/SaveMatch}" th:object="${match}" method="post">
-<!--            <div class="input-group">-->
-<!--                <span class="input-group-text">Match ID</span>-->
-<!--                <input type="text" aria-label="" class="form-control"   />-->
+        <h1><b>Match Schedule</b></h1>
+        <div class="col-sm-4">
+            <form action="#" th:action="@{/SaveMatch}" th:object="${match}" method="post">
 
+                <br>
+                <div class="mb-3">
+                    <label class="form-label"><b>Team 1</b></label>
+                    <select th:id="team1" th:field="*{team1}" class="custom-select">
+                        <div th:each="team:${teamList}">
+                            <option th:value="${team.id}" th:text="${team.team_name}"></option>
+                            <td th:if="${#fields.hasErrors('team1')}" th:errors="*{team1}">team1 and team2 can't be
+                                same
+                            </td>
 
-<!--                <td th:if="${#fields.hasErrors('matchid')}" th:errors="*{matchid}">match Id can't be null</td>-->
+                        </div>
+                    </select>
 
-            <br>
-            <div class="mb-3">
-                <label   class="form-label"><b>Team 1</b></label>
-                <select th:field="*{team1}" class="custom-select">
-                    <div th:each="team:${teamList}">
-                        <option th:value="${team.id}" th:text="${team.team_name}"></option>
-                        <td th:if="${#fields.hasErrors('team1')}" th:errors="*{team1}">team1 and team2 can't be same</td>
+                </div>
+                <br>
 
-                    </div>
-                </select>
+                <div class="mb-3">
+                    <label class="form-label"><b>Team 2</b></label>
+                    <select th:id="team2" th:field="*{team2}" class="custom-select">
+                        <div th:each="team:${teamList}">
+                            <option th:value="${team.id}" th:text="${team.team_name}"></option>
+                        </div>
+                    </select>
+                    <td th:if="${#fields.hasErrors('team2')}" th:errorclass="error" th:errors="*{team2}">team1 and team2
+                        can't be same
+                    </td>
 
-            </div>
-            <br>
+                </div>
+                <br>
+                <div class="mb-3">
+                    <label class="form-label"><b>Date</b></label>
+                    <input type="datetime-local" name="meeting-time" th:id="meeting-time"
+                           min="2021-06-07T00:00" max="2030-06-14T024:00" th:field="*{schedule_date}"/>
 
-            <div class="mb-3">
-                <label   class="form-label"><b>Team 2</b></label>
-                <select th:field="*{team2}" class="custom-select">
-                    <div th:each="team:${teamList}">
-                        <option th:value="${team.id}" th:text="${team.team_name}"> </option>
-                    </div>
-                </select>
-                <td th:if="${#fields.hasErrors('team2')}" th:errorclass="error" th:errors="*{team2}">team1 and team2 can't be same</td>
+                </div>
 
-            </div>
-
-<!--            <div class="input-group">-->
-<!--                <span class="input-group-text ">Date And Time</span>-->
-<!--                <input type="text" aria-label="Name" class="form-control" th:field="*{date}" />-->
-
-<!--            </div>-->
-<br>
-            <div class="mb-3">
-                <label class="form-label"><b>Date</b></label>
-                <input type="datetime-local" name="meeting-time" th:id="meeting-time"
-                       min="2021-06-07T00:00" max="2030-06-14T024:00" th:field="*{schedule_date}"/>
-
-            </div>
-
-            <script th:inline="javascript">
+                <script th:inline="javascript">
     // function checkDate() {
     //     var selectedDate = document.getElementById('meeting-time').value;
     //     var now = new Date();
@@ -106,8 +99,9 @@
         elem.min = minDate
     };
 
-</script>
-            <style>
+
+                </script>
+                <style>
             label {
     display: block;
     font: 1rem 'Fira Sans', sans-serif;
@@ -119,36 +113,51 @@ input,
 label {
     margin: .4rem 0;
 }
-</style>
-            <br>
 
-            <div class="input-group">
-                <span class="input-group-text ">Venue</span>
-                <!--                <input type="text" aria-label="Name" class="form-control" th:field="*{venue}" />-->
-                <select aria-label="Name" id="Venue" class="form-control" th:field="*{venue}">
-                    <option value="M Chinnaswami Stadium ,Bangaluru">M Chinnaswami Stadium ,Bangaluru</option>
-                    <option value="Narendra Modi Stadium, Gujrat">Narendra Modi Stadium, Gujrat</option>
-                    <option value="Chepak Stadium, Chennai">Chepak Stadium, Chennai</option>
-                    <option value="Eden Garden ,Kolkata ">Eden Garden ,Kolkata </option>
-                    <option value="Arun jaitley Stadium,New Delhi ">Arun jaitley Stadium,New Delhi</option>
-                    <option value="Green Park Stadium, Kanpur">Green Park Stadium, Kanpur</option>
-                    <option value="Wankhede Stadium, Mumbai">Wankhede Stadium, Mumbai</option>
-                    <option value="Swami Mansingh Stadium,Jaipur ">Swami Mansingh Stadium,Jaipur</option>
-                    <option value="Holkar Stadium, Indore">Holkar Stadium, Indore</option>
-                    <option value="Rajiv Gandhi Stadium, Hydrabad">Rajiv Gandhi Stadium, Hydrabad</option>
-                    <option value="PCA Stadium,Mohali">PCA Stadium,Mohali</option>
-                    <option value="JACA Stadium , Ranchi">JACA Stadium , Ranchi</option>
+                </style>
+                <br>
 
-                </select>
+                <div class="input-group">
+                    <span class="input-group-text ">Venue</span>
+                    <!--                <input type="text" aria-label="Name" class="form-control" th:field="*{venue}" />-->
+                    <select aria-label="Name" id="Venue" class="form-control" th:field="*{venue}">
+                        <option value="M Chinnaswami Stadium ,Bangaluru">M Chinnaswami Stadium ,Bangaluru</option>
+                        <option value="Narendra Modi Stadium, Gujrat">Narendra Modi Stadium, Gujrat</option>
+                        <option value="Chepak Stadium, Chennai">Chepak Stadium, Chennai</option>
+                        <option value="Eden Garden ,Kolkata ">Eden Garden ,Kolkata</option>
+                        <option value="Arun jaitley Stadium,New Delhi ">Arun jaitley Stadium,New Delhi</option>
+                        <option value="Green Park Stadium, Kanpur">Green Park Stadium, Kanpur</option>
+                        <option value="Wankhede Stadium, Mumbai">Wankhede Stadium, Mumbai</option>
+                        <option value="Swami Mansingh Stadium,Jaipur ">Swami Mansingh Stadium,Jaipur</option>
+                        <option value="Holkar Stadium, Indore">Holkar Stadium, Indore</option>
+                        <option value="Rajiv Gandhi Stadium, Hydrabad">Rajiv Gandhi Stadium, Hydrabad</option>
+                        <option value="PCA Stadium,Mohali">PCA Stadium,Mohali</option>
+                        <option value="JACA Stadium , Ranchi">JACA Stadium , Ranchi</option>
 
-            </div>
-            <br>
-            <button type="submit" class="btn btn-info">Save</button>
+                    </select>
 
-        </form>
-    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-info" onclick="sameteam()">Save</button>
+
+            </form>
+        </div>
     </div>
 </div>
+<script>
+function sameteam(){
+        var item1 = document.getElementById("team1");
+  var item2 = document.getElementById("team2");
+  console.log(item1.value);
+  console.log(item2.value);
+  if (item1.value === item2.value) {
+    alert("Team are the same");
+  }
+
+ };
+
+
+</script>
 </body>
 </html>
 

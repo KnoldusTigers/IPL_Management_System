@@ -24,10 +24,7 @@ public class TeamValidator implements ConstraintValidator<MatchValidation, Match
                 valid = false;
             }
         }
-        MatchModel pointModel=new MatchModel();
-        if(value.getVenue()==pointModel.getVenue()){
-            valid=false;
-        }
+
 
         return valid;
     }

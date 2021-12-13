@@ -1,0 +1,126 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title> </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">IPL Management System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  th:href="@{'/addTeam'}">Add Team</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/addPlayers'}">Add Players</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link "  th:href="@{'/matchSchedule'}">Schedule Match</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  th:href="@{'/editPlayers'}">Add Players</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div align="center">
+    <h1>Schedule</h1>
+    <br />
+    <div class="col-sm-4">
+        <form action="#" th:action="@{/SaveMatch}" th:object="${match}" method="post">
+            <div class="input-group">
+                <span class="input-group-text">Match ID</span>
+                <input type="text" aria-label="" class="form-control" th:field="*{matchid}" />
+
+            </div>
+            <br>
+            <div class="mb-3">
+                <label   class="form-label">Team1</label>
+                <select th:field="*{team1}" class="custom-select">
+                    <div th:each="team:${teamList}">
+                        <option th:value="${team.id}" th:text="${team.team_name}"></option>
+                    </div>
+                </select>
+            </div>
+            <br>
+
+            <div class="mb-3">
+                <label   class="form-label">Team2</label>
+                <select th:field="*{team2}" class="custom-select">
+                    <div th:each="team:${teamList}">
+                        <option th:value="${team.id}" th:text="${team.team_name}"></option>
+                    </div>
+                </select>
+            </div>
+
+
+            <!--            <div class="input-group">-->
+            <!--                <span class="input-group-text ">Date And Time</span>-->
+            <!--                <input type="text" aria-label="Name" class="form-control" th:field="*{date}" />-->
+
+            <!--            </div>-->
+
+            <label for="meeting-time"></label>
+
+            <input type="datetime-local" id="meeting-time"
+                   name="meeting-time" value="2018-06-12T00:00"
+                   min="2018-06-07T00:00" max="2022-06-14T024:00" th:field="*{schedule_date}"/>
+
+
+            <style>label {
+                   display: block;
+                         font: 1rem 'Fira Sans', sans-serif;
+                               }
+
+                         input,
+                           label {
+                                 margin: .4rem 0;
+                                }
+                               </style>
+
+
+
+            <br>
+            <div class="input-group">
+                <span class="input-group-text ">Venue</span>
+                <input type="text" aria-label="Name" class="form-control" th:field="*{venue}" />
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-text ">Team1 Description</span>
+                <input type="text" aria-label="Name" class="form-control" th:field="*{Team1_Description}" />
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-text ">Team2 Description</span>
+                <input type="text" aria-label="Name" class="form-control" th:field="*{Team2_Description}" />
+            </div>
+            <br>
+
+
+                            <br>
+                            <button type="submit" class="btn btn-info">Save</button>
+
+
+
+
+        </form>
+    </div>
+
+
+</div>
+</body>
+</html>

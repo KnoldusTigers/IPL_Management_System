@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Create New Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">IPL Management System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  th:href="@{'/addTeam'}">Add Team</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/addPlayers'}">Add Players</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link "  th:href="@{'/matchSchedule'}">Schedule Match</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  th:href="@{'/editPlayers'}">Players</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div align="center">
+    <h1>Create New Team</h1>
+    <br />
+    <div class="col-sm-4">
+        <form action="#" th:action="@{/save}" th:object="${Team}" method="post">
+            <div class="input-group">
+                <span class="input-group-text">ID</span>
+                <input type="text" aria-label="ID" class="form-control" th:field="*{id}" />
+
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-text ">Name</span>
+                <input type="text" aria-label="Name" class="form-control" th:field="*{team_name}" />
+
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-text ">Captain</span>
+                <input type="text" aria-label="Name" class="form-control" th:field="*{captain}" />
+            </div>
+
+            <br>
+            <div class="input-group">
+                <span class="input-group-text ">States</span>
+                <input type="text" aria-label="Name" class="form-control" th:field="*{state}" />
+            </div>
+
+            <br>
+              <button type="submit" class="btn btn-info">Save</button>
+
+        </form>
+    </div>
+</div>
+</body>
+</html>

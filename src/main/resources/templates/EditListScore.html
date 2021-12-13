@@ -1,0 +1,115 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+    <title> Edit Score</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">IPL Management System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  th:href="@{'/addTeam'}">Add Team</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/addPlayers'}">Add Players</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link "  th:href="@{'/matchSchedule'}">Schedule Match</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  th:href="@{'/editPlayers'}">Edit Players</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  th:href="@{'/editMatch'}">Edit Match</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active"  th:href="@{'/EditListScore'}">Update Score</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link "  th:href="@{'/Admin'}">Admin</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div>
+    <!--    <a class="btn btn-primary" th:href="@{'/addTeam'}" role="button">Add Team</a>-->
+
+</div>
+<br>
+<div class="register" align="center">
+    <h1><b>Update Match</b></h1>
+
+    <table class="table table-bordered" align="center" style="width:60%">
+        <tr style="color:white;">
+            <th>Team 1 </th>
+            <th>Team 2</th>
+            <th>Date</th>
+            <th>Venue</th>
+            <th>Team1 Score</th>
+            <th>Team2 Score</th>
+            <th>Result</th>
+
+        </tr>
+        <tr th:each="match:${matchModelsList}" style="color:white;">
+            <td th:text="${match.team1.teamname}"></td>
+            <td th:text="${match.team2.teamname}"></td>
+            <td th:text="${match.scheduledate}"></td>
+            <td th:text="${match.venue}"></td>
+            <td th:text="${match.Team1_Description}"></td>
+            <td th:text="${match.Team2_Description}"></td>
+            <td th:text="${match.result}"></td>
+
+            <td>
+                <a   th:href="@{'/editScore/' + ${match.matchid}}">Update Score</a>
+            </td>
+
+        </tr>
+
+    </table>
+
+    <style>
+body {
+    background-image: url('https://images.unsplash.com/photo-1594470117722-de4b9a02ebed?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1429&q=80');
+    min-height: 380px;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.register {
+ background-color: rgba(0,0,0,0.5);
+    width: 60%;
+    font-size: 18px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255, 0.3);
+    box-shadow: 2px 2px 15px rgba(0,0,0,0.3);
+    color: #fff;
+    position:absolute;
+    top:15%;
+    left:25%;
+    bottom:40%;
+}
+</style>
+</div>
+
+</body>
+</html>

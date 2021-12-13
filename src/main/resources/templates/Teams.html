@@ -1,0 +1,113 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">IPL Management System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/Teams'}">Teams</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link "  th:href="@{'/showPlayers'}">Players</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link "  th:href="@{'/result'}">Result</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link "  th:href="@{'/viewMatch'}">Match</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link "  th:href="@{'/Admin'}">Admin</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<div class="container-fluid background-image">
+    <div class="row">
+        <div class="col text-center">
+            <h1 class="display-3 p-3 text-white">Teams</h1>
+            <p class="lead text-white"></p>
+        </div>
+    </div>
+
+    <div class="row pt-5">
+        <th:block th:each="Team:${teamList}">
+            <div class="col-md-4 pb-5 d-flex justify-content-center">
+                <div class="match-card text-white">
+                    <div class="row pl-3">
+                        <div class="col p-4">
+                            <div class="team">
+                                <h5 class="text-white font-weight-bold" align="center"> <a th:href="@{/showPlayers/{team_id}(team_id=${Team.id})}">[[${Team.teamname}]]</a></h5>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="row pt-3">
+                        <div class="col text-center">
+                            <h6 bgcolor="white" >(captain) <p th:text="${Team.Captain}" ></p></h6>
+                        </div>
+                    </div>
+
+
+                    <div class="col text-center">
+                        <h7 class="text-white font-weight-bold"><i class="bi bi-geo-alt-fill p-1"></i>[[${Team.state}]]</h7>
+                    </div>
+
+                </div>
+            </div>
+        </th:block>
+    </div>
+
+
+
+    <style>
+    body {
+    background: url("https://media.istockphoto.com/vectors/cricket-tournament-banner-background-vector-id531584383?k=20&m=531584383&s=612x612&w=0&h=eggXiu2KsMppuEOUAJlbojUG53lB3rqqy2urVeBNJII=");
+        background-size: cover;
+    }
+
+    .match-card {
+        border: 4px solid white;
+        background: rgba(0,0,0, 0.5);
+        height: auto;
+        width: 400px;
+    }
+
+
+    .team {
+        display: flex;
+        flex-direction: column;
+    }
+
+</style>
+
+
+
+</div>
+</body>
+</html>

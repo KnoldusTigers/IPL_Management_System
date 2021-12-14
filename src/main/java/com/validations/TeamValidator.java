@@ -1,17 +1,18 @@
 package com.validations;
 
 import com.model.MatchModel;
-import com.model.PointModel;
-import com.service.resultservice;
-import com.validations.MatchValidation;
+import com.service.ResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+/**
+ * The type Team validator.
+ */
 public class TeamValidator implements ConstraintValidator<MatchValidation, MatchModel> {
     @Autowired
-    private resultservice rs;
+    private ResultService rs;
     public void initialize(MatchValidation constraintAnnotation) {
 
     }
@@ -25,12 +26,9 @@ public class TeamValidator implements ConstraintValidator<MatchValidation, Match
             }
         }
         MatchModel pointModel=new MatchModel();
-        if(value.getVenue()==pointModel.getVenue()){
+        if(value.getVenue() == pointModel.getVenue()) {
             valid=false;
         }
-
         return valid;
     }
-
-
 }

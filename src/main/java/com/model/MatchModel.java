@@ -7,6 +7,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * The type Match model.
+ */
 @Entity
 @Table(name = "MatchScheduling")
 @MatchValidation
@@ -17,67 +20,23 @@ public class MatchModel {
     @Column(name = "matchid", nullable = false)
     private int matchid;
     @NotNull
-    @Size(min=5,message ="fill all fields")
+    @Size(min = 4, message = "fill all fields")
     private String  scheduledate;
     @Unique
     private String venue;
-    private String Team1_Description;
-    private String Team2_Description;
+    private String team1Description;
+    private String team2Description;
 
     @Column(name = "team1_wickets", nullable = true)
-    private String Team1_Wickets;
+    private String team1Wickets;
 
     @Column(name = "team2_wickets", nullable = true)
-    private String Team2_Wickets;
+    private String team2Wickets;
     @Column(name = "team1_overs", nullable = true)
-    private String Team1_Overs;
+    private Double team1Overs;
     @Column(name = "team2_overs", nullable = true)
 
-    private String Team2_Overs;
-
-
-    private String result;
-
-    public String getTeam2_Description() {
-        return Team2_Description;
-    }
-
-    public void setTeam2_Description(String team2_Description) {
-        Team2_Description = team2_Description;
-    }
-
-    public String getTeam1_Wickets() {
-        return Team1_Wickets;
-    }
-
-    public void setTeam1_Wickets(String team1_Wickets) {
-        Team1_Wickets = team1_Wickets;
-    }
-
-    public String getTeam2_Wickets() {
-        return Team2_Wickets;
-    }
-
-    public void setTeam2_Wickets(String team2_Wickets) {
-        Team2_Wickets = team2_Wickets;
-    }
-
-    public String getTeam1_Overs() {
-        return Team1_Overs;
-    }
-
-    public void setTeam1_Overs(String team1_Overs) {
-        Team1_Overs = team1_Overs;
-    }
-
-    public String getTeam2_Overs() {
-        return Team2_Overs;
-    }
-
-    public void setTeam2_Overs(String team2_Overs) {
-        Team2_Overs = team2_Overs;
-    }
-
+    private Double team2Overs;
     @ManyToOne
     @JoinColumn(name = "states")
     private StateModel stateModel;
@@ -90,69 +49,243 @@ public class MatchModel {
     @JoinColumn(name = "team_id2")
     private TeamModel team2;
 
+
+    private String result;
+
+    /**
+     * Gets team 2 description.
+     *
+     * @return the team 2 description
+     */
+    public String getTeam2Description() {
+        return team2Description;
+    }
+
+    /**
+     * Sets team 2 description.
+     *
+     * @param team2Description the team 2 description
+     */
+    public void setTeam2Description(final String team2Description) {
+        this.team2Description = team2Description;
+    }
+
+    /**
+     * Gets team 1 wickets.
+     *
+     * @return the team 1 wickets
+     */
+    public String getTeam1Wickets() {
+        return team1Wickets;
+    }
+
+    /**
+     * Sets team 1 wickets.
+     *
+     * @param team1Wickets the team 1 wickets
+     */
+    public void setTeam1Wickets(final String team1Wickets) {
+        this.team1Wickets = team1Wickets;
+    }
+
+    /**
+     * Gets team 2 wickets.
+     *
+     * @return the team 2 wickets
+     */
+    public String getTeam2Wickets() {
+        return team2Wickets;
+    }
+
+    /**
+     * Sets team 2 wickets.
+     *
+     * @param team2Wickets the team 2 wickets
+     */
+    public void setTeam2Wickets(final String team2Wickets) {
+        this.team2Wickets = team2Wickets;
+    }
+
+    /**
+     * Gets team 1 overs.
+     *
+     * @return the team 1 overs
+     */
+    public Double getTeam1Overs() {
+        return team1Overs;
+    }
+
+    /**
+     * Sets team 1 overs.
+     *
+     * @param team1Overs the team 1 overs
+     */
+    public void setTeam1Overs(final Double team1Overs) {
+        this.team1Overs = team1Overs;
+    }
+
+    /**
+     * Gets team 2 overs.
+     *
+     * @return the team 2 overs
+     */
+    public Double getTeam2Overs() {
+        return team2Overs;
+    }
+
+    /**
+     * Sets team 2 overs.
+     *
+     * @param team2Overs the team 2 overs
+     */
+    public void setTeam2Overs(final Double team2Overs) {
+        this.team2Overs = team2Overs;
+    }
+
+
+    /**
+     * Gets state model.
+     *
+     * @return the state model
+     */
     public StateModel getStateModel() {
         return stateModel;
     }
 
-    public void setStateModel(StateModel stateModel) {
+    /**
+     * Sets state model.
+     *
+     * @param stateModel the state model
+     */
+    public void setStateModel(final StateModel stateModel) {
         this.stateModel = stateModel;
     }
 
-    public String getTeam1_Description() {
-        return Team1_Description;
+    /**
+     * Gets team 1 description.
+     *
+     * @return the team 1 description
+     */
+    public String getTeam1Description() {
+        return team1Description;
     }
 
-    public void setTeam1_Description(String team1_Description) {
-        Team1_Description = team1_Description;
+    /**
+     * Sets team 1 description.
+     *
+     * @param team1Description the team 1 description
+     */
+    public void setTeam1Description(final String team1Description) {
+        this.team1Description = team1Description;
     }
 
+    /**
+     * Gets team 1.
+     *
+     * @return the team 1
+     */
     public TeamModel getTeam1() {
         return team1;
     }
 
+    /**
+     * Sets team 1.
+     *
+     * @param team1 the team 1
+     */
     public void setTeam1(final TeamModel team1) {
         this.team1 = team1;
     }
 
+    /**
+     * Gets team 2.
+     *
+     * @return the team 2
+     */
     public TeamModel getTeam2() {
         return team2;
     }
 
+    /**
+     * Sets team 2.
+     *
+     * @param team2 the team 2
+     */
     public void setTeam2(final TeamModel team2) {
         this.team2 = team2;
     }
 
 
+    /**
+     * Gets matchid.
+     *
+     * @return the matchid
+     */
     public int getMatchid() {
         return matchid;
     }
 
+    /**
+     * Gets scheduledate.
+     *
+     * @return the scheduledate
+     */
     public String getScheduledate() {
         return scheduledate;
     }
 
-    public void setScheduledate(String scheduledate) {
+    /**
+     * Sets scheduledate.
+     *
+     * @param scheduledate the scheduledate
+     */
+    public void setScheduledate(final String scheduledate) {
         this.scheduledate = scheduledate;
     }
 
-    public void setMatchid(int matchid) {
+    /**
+     * Sets matchid.
+     *
+     * @param matchid the matchid
+     */
+    public void setMatchid(final int matchid) {
         this.matchid = matchid;
     }
 
 
+    /**
+     * Gets venue.
+     *
+     * @return the venue
+     */
     public String getVenue() {
         return venue;
     }
 
-    public void setVenue(String venue) {
+    /**
+     * Sets venue.
+     *
+     * @param venue the venue
+     */
+    public void setVenue(final String venue) {
         this.venue = venue;
     }
 
+    /**
+     * Gets result.
+     *
+     * @return the result
+     */
     public String getResult() {
         return result;
     }
 
-    public void setResult(String result) {
+    /**
+     * Sets result.
+     *
+     * @param result the result
+     */
+    public void setResult(final String result) {
         this.result = result;
     }
 

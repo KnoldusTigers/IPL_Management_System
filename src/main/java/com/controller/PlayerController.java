@@ -17,17 +17,27 @@ import javax.validation.Valid;
 import java.util.List;
 
 
+/**
+ * The type Player controller.
+ */
 @Controller
 public class PlayerController {
     private static final Logger logger = LoggerFactory.getLogger(PlayerController.class);
 
     @Autowired
-
     private PlayerService playerservice;
     @Autowired
     private TeamService teamservice;
+    @Autowired
+    private PlayerRepo playerRepo;
 
-    //add new players
+    /**
+     * Add string.
+     *
+     * @param model the model
+     * @return the string
+     */
+//open add new players page
     @GetMapping(value = "/addPlayers")
     public String add(Model model) {
         model.addAttribute("Player", new PlayersModel());
@@ -36,7 +46,14 @@ public class PlayerController {
         return "addPlayers";
     }
 
-    //save player
+    /**
+     * Save player string.
+     *
+     * @param pm     the pm
+     * @param result the result
+     * @return the string
+     */
+//save player in database and check validations before save
     @RequestMapping(value = "/Save", method = RequestMethod.POST)
     public String savePlayer(@Valid @ModelAttribute("Player") final PlayersModel pm, BindingResult result) {
         if(playerservice.playernameExists(String.valueOf(pm.getName()))){
@@ -55,11 +72,14 @@ public class PlayerController {
         }
     }
 
-
-
-    @Autowired
-    private PlayerRepo playerRepo;
-
+    /**
+     * View teams string.
+     *
+     * @param team_id the team id
+     * @param model   the model
+     * @return the string
+     */
+//show players of particular team
     @GetMapping(value = "/showPlayers/{team_id}")
     public String viewTeams(@PathVariable Long team_id, Model model) {
         List<PlayersModel> playerList =   playerRepo.findByTeamId(team_id);
@@ -67,6 +87,14 @@ public class PlayerController {
 
         return "showPlayers";
     }
+
+    /**
+     * Gets all players.
+     *
+     * @param model the model
+     * @return the all players
+     */
+//show all players
     @GetMapping(value = "/showPlayers")
     public String getAllPlayers(final Model model) {
         List<PlayersModel> playerList = (List<PlayersModel>) playerRepo.findAll();
@@ -74,6 +102,14 @@ public class PlayerController {
 
         return "showPlayers";
     }
+
+    /**
+     * Gets all players for edit.
+     *
+     * @param model the model
+     * @return the all players for edit
+     */
+//open edit player page
     @GetMapping(value = "/editPlayers")
     public String getAllPlayersForEdit(final Model model) {
         List<PlayersModel> playerList = (List<PlayersModel>) playerRepo.findAll();
@@ -82,6 +118,14 @@ public class PlayerController {
         model.addAttribute("teamList", teamList);
         return "editPlayers";
     }
+
+    /**
+     * Show edit pllayer model and view.
+     *
+     * @param id the id
+     * @return the model and view
+     */
+//edit player by id
     @RequestMapping("/edit/{id}")
     public ModelAndView showEditPllayer(@PathVariable(name = "id") int id) {
         ModelAndView modelAndView = new ModelAndView("updatePlayer");
@@ -91,6 +135,14 @@ public class PlayerController {
         modelAndView.addObject("teamList", teamList);
         return modelAndView;
     }
+
+    /**
+     * Deletestudent string.
+     *
+     * @param id the id
+     * @return the string
+     */
+//delete player
     @RequestMapping("/delete/{id}")
     public String deletestudent(@PathVariable(name = "id") int id) {
         playerservice.delete(id);

@@ -113,14 +113,16 @@
     //     }
     // }
 
+
     window.onload = function(){
         elem = document.getElementById("meeting-time")
-        var iso = new Date().toISOString()replace(/:[^:]*$/,'');
+        var iso = new Date().toISOString();
         console.log("Yeaaa I am running::::::::");
-        var minDate = iso.substring(0,iso.length-1);
+        var minDate = iso.substring(0,iso.length-1).replace(/:[^:]*$/,'');
         elem.value = minDate
         elem.min = minDate
     };
+
 
 </script>
             <style>

@@ -1,3 +1,4 @@
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -49,75 +50,76 @@
 </nav>
 
 <div class="register" align="center">
-   <br>
-        <h1><b> Update Score</b></h1>
-<div class="col-sm-4">
-<form action="#" th:action="@{/SaveScore}" th:object="${match}" method="post">
+    <br>
+    <h1><b> Update Score</b></h1>
+    <div class="col-sm-4">
+        <form action="#" th:action="@{/SaveScore}" th:object="${match}" method="post">
 
-    <div class="input-group">
-        <span class="input-group-text">Match ID</span>
-        <input type="text" readonly aria-label="" hidden class="form-control" th:field="*{matchid}" />
+            <!--    <div class="input-group">-->
+            <!--        <span class="input-group-text">Match ID</span>-->
+            <!--        <input type="text" readonly aria-label="" hidden class="form-control" th:field="*{matchid}" />-->
+            <!--    </div>-->
+
+            <div class="input ">
+                <input type="text" readonly aria-label="" hidden class="form-control" th:field="*{team1}" />
+            </div>
+
+            <div class="input ">
+                <input type="text" readonly aria-label="" hidden class="form-control" th:field="*{team2}" />
+
+            </div>
+
+            <div class="input">
+                <input type="text" readonly aria-label="" hidden class="form-control" th:field="*{venue}" />
+
+            </div>
+
+            <div class="input">
+                <input type="text" readonly aria-label="" hidden class="form-control" th:field="*{scheduledate}" />
+
+            </div><br>
+
+
+            <div class="input-group mb-3" >
+                <span class="input-group-text ">[[${match.team1.teamname}]]</span>
+                <input type="number" min="0" max="720" aria-label="Name" class="form-control" th:field="*{team1Description}" />
+            </div><br>
+
+            <div class="input-group">
+                <span class="input-group-text ">Wickets</span>
+                <input type="number" min="0" max="10" aria-label="Name" class="form-control" th:field="*{team1Wickets}" />
+                <td th:if="${#fields.hasErrors('team1Wickets')}" th:errors="*{team1Wickets}">wickets error</td>
+
+            </div><br>
+
+            <div class="input-group">
+
+                <span class="input-group-text ">Overs</span>
+                <input type="number" step="0.1" min="0" max="20" aria-label="Name" class="form-control" th:field="*{team1Overs}" />
+                <td th:if="${#fields.hasErrors('team1Overs')}" th:errors="*{team1Overs}">over error</td>
+            </div><br>
+
+            <div class="input-group">
+                <span class="input-group-text ">[[${match.team2.teamname}]]</span>
+                <input type="number" min="0" max="720" aria-label="Name" class="form-control" th:field="*{team2Description}" />
+            </div><br>
+
+            <div class="input-group">
+                <span class="input-group-text ">Wickets</span>
+                <input type="number" min="0" max="10" aria-label="Name" class="form-control" th:field="*{team2Wickets}" />
+                <td th:if="${#fields.hasErrors('team2Wickets')}" th:errors="*{team2Wickets}">wickets error</td>
+            </div><br>
+
+            <div class="input-group">
+                <span class="input-group-text ">Overs</span>
+                <input type="number" step="0.1" min="0" max="20" aria-label="Name" class="form-control" th:field="*{team2Overs}" />
+                <td th:if="${#fields.hasErrors('team2Overs')}" th:errors="*{team2Overs}">over error</td>
+            </div><br>
+            </th:block>
+            <button type="submit" class="btn btn-info">Save</button>
+
+        </form>
     </div>
-
-    <div class="input ">
-         <input type="text" readonly aria-label=""hidden class="form-control" th:field="*{team1}" />
-    </div>
-
-    <div class="input ">
-         <input type="text" readonly aria-label="" hidden class="form-control" th:field="*{team2}" />
-
-    </div>
-
-    <div class="input">
-         <input type="text" readonly aria-label="" hidden class="form-control" th:field="*{venue}" />
-
-    </div>
-
-    <div class="input">
-        <input type="text" readonly aria-label="" hidden class="form-control" th:field="*{scheduledate}" />
-
-    </div><br>
-
-
-<div class="input-group mb-3">
-    <span class="input-group-text ">Team1 Score</span>
-    <input type="text" aria-label="Name" class="form-control" th:field="*{Team1_Description}" />
-</div><br>
-
-<div class="input-group">
-    <span class="input-group-text ">Team1 Wickets</span>
-    <input type="text" aria-label="Name" class="form-control" th:field="*{Team1_Wickets}" />
-    <td th:if="${#fields.hasErrors('Team1_Wickets')}" th:errors="*{Team1_Wickets}">wickets error</td>
-
-</div><br>
-
-    <div class="input-group">
-
-    <span class="input-group-text ">Team1 Overs</span>
-    <input type="text" aria-label="Name" class="form-control" th:field="*{Team1_Overs}" />
-    <td th:if="${#fields.hasErrors('Team1_Overs')}" th:errors="*{Team1_Overs}">over error</td>
-</div><br>
-
-<div class="input-group">
-    <span class="input-group-text ">Team2 Score</span>
-    <input type="text" aria-label="Name" class="form-control" th:field="*{Team2_Description}" />
-</div><br>
-
-    <div class="input-group">
-    <span class="input-group-text ">Team2 Wickets</span>
-    <input type="text" aria-label="Name" class="form-control" th:field="*{Team2_Wickets}" />
-    <td th:if="${#fields.hasErrors('Team2_Wickets')}" th:errors="*{Team2_Wickets}">wickets error</td>
-</div><br>
-
-    <div class="input-group">
-    <span class="input-group-text ">Team2 Overs</span>
-    <input type="text" aria-label="Name" class="form-control" th:field="*{Team2_Overs}" />
-    <td th:if="${#fields.hasErrors('Team2_Overs')}" th:errors="*{Team2_Overs}">over error</td>
-    </div><br>
-
-<button type="submit" class="btn btn-info">Save</button>
-</form>
-</div>
 </div>
 </body>
 <style>

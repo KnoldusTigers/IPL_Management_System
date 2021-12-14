@@ -8,15 +8,21 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * The type Result service.
+ */
 @Service
-public class resultservice {
-@Autowired
+public class ResultService {
+ @Autowired
 private PointRepo pointRepo;
 
-
-public MatchModel getResult(MatchModel matchModel){
-
-
+    /**
+     * Get result match model.
+     *
+     * @param matchModel the match model
+     * @return the match model
+     */
+    public MatchModel getResult(MatchModel matchModel){
     Long teamId1=matchModel.getTeam1().getId();
     Long teamId2=matchModel.getTeam2().getId();
     PointModel pointModel1= pointRepo.findByTeamId(teamId1);
@@ -42,16 +48,16 @@ System.out.println(teamId1+"  "+teamId2);
 
     //
 
-     String team1 =  matchModel.getTeam1_Description();
+     String team1 =  matchModel.getTeam1Description();
     int team1Score = Integer.parseInt(team1);
-    String wicket1 =  matchModel.getTeam1_Wickets();
+    String wicket1 =  matchModel.getTeam1Wickets();
     int  team1wicket = Integer.parseInt(wicket1);
-    String team2 = matchModel.getTeam2_Description();
+    String team2 = matchModel.getTeam2Description();
     int team2Score = Integer.parseInt(team2);
-     String wicket2 = matchModel.getTeam2_Wickets();
+     String wicket2 = matchModel.getTeam2Wickets();
     int  team2wicket = Integer.parseInt(wicket2);
-    long team1overs= Long.parseLong(matchModel.getTeam1_Overs());
-    long tema2overs= Long.parseLong(matchModel.getTeam2_Overs());
+    Double team1overs= Double.valueOf((String.valueOf(matchModel.getTeam1Overs())));
+    Double tema2overs= Double.valueOf( (String.valueOf(matchModel.getTeam2Overs())));
     System.out.println("===============--------------------------------------==============="+pointModel1.getMatchCount()+" "+pointModel2.getMatchCount());
 
 
@@ -87,7 +93,13 @@ System.out.println(teamId1+"  "+teamId2);
 
     return matchModel;
 }
- public List<PointModel> getPoint(){
+
+    /**
+     * Get point list.
+     *
+     * @return the list
+     */
+    public List<PointModel> getPoint(){
 
     return   pointRepo.findAll();
  }

@@ -1,9 +1,8 @@
-
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
-    <title> Update Score </title>
+    <title> </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
     <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
 </head>
@@ -40,111 +39,87 @@
             </ul>
         </div>
     </div>
-    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link "  th:href="@{'/Admin'}">Admin</a>
-            </li>
-        </ul>
-    </div>
 </nav>
 
-<div class="register" align="center">
+<div align="center">
     <br>
     <h1><b> Update Score</b></h1>
     <div class="col-sm-4">
         <form action="#" th:action="@{/SaveScore}" th:object="${match}" method="post">
 
-            <!--    <div class="input-group">-->
-            <!--        <span class="input-group-text">Match ID</span>-->
-            <!--        <input type="text" readonly aria-label="" hidden class="form-control" th:field="*{matchid}" />-->
-            <!--    </div>-->
+            <div class="input-group">
 
-            <div class="input ">
-                <input type="text" readonly aria-label="" hidden class="form-control" th:field="*{team1}" />
+                <input type="text" readonly aria-label="" hidden class="form-control" th:field="*{matchid}" />
+
             </div>
+            <br>
+            <div class="input ">
+                <input type="text" readonly aria-label=""hidden class="form-control" th:field="*{team1}" />
 
+            </div>
+            <br>
             <div class="input ">
                 <input type="text" readonly aria-label="" hidden class="form-control" th:field="*{team2}" />
 
             </div>
-
+            <br>
             <div class="input">
                 <input type="text" readonly aria-label="" hidden class="form-control" th:field="*{venue}" />
 
             </div>
-
+            <br>
             <div class="input">
                 <input type="text" readonly aria-label="" hidden class="form-control" th:field="*{scheduledate}" />
 
-            </div><br>
+            </div>
+            <br>
 
-
-            <div class="input-group mb-3" >
+            <div class="input-group mb-3">
                 <span class="input-group-text ">[[${match.team1.teamname}]]</span>
-                <input type="number" min="0" max="720" aria-label="Name" class="form-control" th:field="*{team1Description}" />
-            </div><br>
-
+                <input type="text" aria-label="Name" class="form-control" th:field="*{team1Description}" />
+            </div>
+            <br>
             <div class="input-group">
-                <span class="input-group-text ">Wickets</span>
-                <input type="number" min="0" max="10" aria-label="Name" class="form-control" th:field="*{team1Wickets}" />
+                <span class="input-group-text ">Team1 Wickets</span>
+                <input type="text" aria-label="Name" class="form-control" th:field="*{team1Wickets}" />
                 <td th:if="${#fields.hasErrors('team1Wickets')}" th:errors="*{team1Wickets}">wickets error</td>
 
-            </div><br>
+            </div>
+            <br>
 
             <div class="input-group">
 
-                <span class="input-group-text ">Overs</span>
-                <input type="number" step="0.1" min="0" max="20" aria-label="Name" class="form-control" th:field="*{team1Overs}" />
+                <span class="input-group-text ">Team1 Overs</span>
+                <input type="text" aria-label="Name" class="form-control" th:field="*{team1Overs}" />
                 <td th:if="${#fields.hasErrors('team1Overs')}" th:errors="*{team1Overs}">over error</td>
-            </div><br>
 
+            </div>
+            <br>
             <div class="input-group">
                 <span class="input-group-text ">[[${match.team2.teamname}]]</span>
-                <input type="number" min="0" max="720" aria-label="Name" class="form-control" th:field="*{team2Description}" />
-            </div><br>
+                <input type="text" aria-label="Name" class="form-control" th:field="*{team2Description}" />
+            </div>
+            <br>
 
             <div class="input-group">
-                <span class="input-group-text ">Wickets</span>
-                <input type="number" min="0" max="10" aria-label="Name" class="form-control" th:field="*{team2Wickets}" />
+                <span class="input-group-text ">Team2 Wickets</span>
+                <input type="text" aria-label="Name" class="form-control" th:field="*{team2Wickets}" />
                 <td th:if="${#fields.hasErrors('team2Wickets')}" th:errors="*{team2Wickets}">wickets error</td>
-            </div><br>
+
+            </div>
+            <br>
 
             <div class="input-group">
-                <span class="input-group-text ">Overs</span>
-                <input type="number" step="0.1" min="0" max="20" aria-label="Name" class="form-control" th:field="*{team2Overs}" />
+                <span class="input-group-text ">Team2 Overs</span>
+                <input type="text" aria-label="Name" class="form-control" th:field="*{team2Overs}" />
                 <td th:if="${#fields.hasErrors('team2Overs')}" th:errors="*{team2Overs}">over error</td>
-            </div><br>
-            </th:block>
-            <button type="submit" class="btn btn-info">Save</button>
 
+            </div>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-info">Save</button>
         </form>
     </div>
 </div>
 </body>
-<style>
-body {
-  background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1605&q=80');
-    min-height: 380px;
-
-/* Center and scale the image nicely */
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-position: relative;
-}
-.register {
- background-color: rgba(0,0,0,0.5);
-    width: 60%;
-    font-size: 18px;
-    border-radius: 10px;
-    border: 1px solid rgba(255,255,255, 0.3);
-    box-shadow: 2px 2px 15px rgba(0,0,0,0.3);
-    color: #fff;
-    position:absolute;
-    top:15%;
-    left:25%;
-    bottom:5%;
-}
-</style>
 </html>

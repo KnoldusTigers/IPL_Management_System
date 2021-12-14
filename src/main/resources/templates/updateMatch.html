@@ -88,7 +88,7 @@
                 <label   class="form-label">Team1</label>
                 <select th:field="*{team1}" class="custom-select" disabled>
                     <div th:each="team:${teamList}">
-                        <option th:value="${team.id}"  th:text="${team.team_name}" ></option>
+                        <option th:value="${team.id}"  th:text="${team.teamname}" ></option>
                     </div>
                 </select>
             </div>
@@ -98,7 +98,7 @@
                 <label   class="form-label">Team2</label>
                 <select th:field="*{team2}" class="custom-select" disabled>
                     <div th:each="team:${teamList}">
-                        <option th:value="${team.id}" th:text="${team.team_name}"></option>
+                        <option th:value="${team.id}" th:text="${team.teamname}"></option>
                     </div>
                 </select>
             </div>
@@ -122,7 +122,7 @@
         elem = document.getElementById("meeting-time")
         var iso = new Date().toISOString();
         console.log("Yeaaa I am running::::::::");
-        var minDate = iso.substring(0,iso.length-1);
+        var minDate = iso.substring(0,iso.length-1).replace(/:[^:]*$/,'');
         elem.value = minDate
         elem.min = minDate
     };

@@ -13,8 +13,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
     public @interface MatchValidation {
 
         String message() default "team1 or team2 not be equal!";
-
-        Class<?>[] groups() default { };
+         Class<?>[] groups() default { };
 
         Class<? extends Payload>[] payload() default { };
 

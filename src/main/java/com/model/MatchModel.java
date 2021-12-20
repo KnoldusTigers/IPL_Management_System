@@ -1,7 +1,8 @@
 package com.model;
-import com.validations.MatchValidation;
-import org.checkerframework.common.aliasing.qual.Unique;
 
+
+
+import com.validations.MatchValidation;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,7 +23,7 @@ public class MatchModel {
     @NotNull
     @Size(min = 4, message = "fill all fields")
     private String  scheduledate;
-    @Unique
+
     private String venue;
     private String team1Description;
     private String team2Description;
@@ -42,11 +43,11 @@ public class MatchModel {
     private StateModel stateModel;
 
     @ManyToOne
-    @JoinColumn(name = "team_id1")
+    @JoinColumn(name = "teamid1")
     private TeamModel team1;
 
     @ManyToOne
-    @JoinColumn(name = "team_id2")
+    @JoinColumn(name = "teamid2")
     private TeamModel team2;
 
 

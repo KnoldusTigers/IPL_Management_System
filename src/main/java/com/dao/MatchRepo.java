@@ -1,8 +1,10 @@
 package com.dao;
 
 import com.model.MatchModel;
+import com.model.TeamModel;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -25,4 +27,8 @@ public interface MatchRepo extends CrudRepository<MatchModel, Integer> {
      * @return the optional
      */
     Optional<MatchModel> findByScheduledate(String date);
+
+   public Optional<MatchModel> findByTeam1(TeamModel team1);
+      List<MatchModel> findAllByTeam1(TeamModel team1);
+
 }

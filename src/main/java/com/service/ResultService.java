@@ -6,7 +6,9 @@ import com.model.PointModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * The type Result service.
@@ -100,8 +102,8 @@ System.out.println(teamId1+"  "+teamId2);
      * @return the list
      */
     public List<PointModel> getPoint(){
-
-    return   pointRepo.findAll();
+List<PointModel> point= pointRepo.findAll();
+       return point;
  }
 
 

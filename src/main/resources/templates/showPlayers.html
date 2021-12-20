@@ -49,26 +49,90 @@
 <br>
 
 <div class="register" align="center">
-    <h1><b>Players </b></h1>
- <table class="table table-bordered" align="center" style="width:40%" bgcolor="grey" >
-    <tr>
-        <th>Player Name</th>
-        <th>Player Team</th>
-        <th>Player Role</th>
+    <h1 >Players</h1>
+    <div class="row pt-5">
+    <th:block th:each="player:${playerList}">
+        <div class="col-md-4 pb-5 d-flex justify-content-center">
 
+    <div class="flip-card" >
+        <div class="flip-card-inner" >
+            <div class="flip-card-front">
+                <br>
+                <br>
+                <h1 bgcolor="white" th:text="${player.name}"></h1>
+<br>
+                <br>
+            <h3 bgcolor="white" th:text="${player.player_role}"></h3>
+            </div>
+            <div class="flip-card-back">
+                <br>
+                <br>
+  <br>
+                         <h1 bgcolor="white" th:text="${player.team.teamname}"></h1>
 
-    </tr>
-    <tr th:each="player:${playerList}">
-        <td bgcolor="white" th:text="${player.name}">
-            <!--      <a th:href="@{/showPlayers/{team_id}(team_id=${Team.id})}">[[${Team.team_name}]]</a>-->
-        </td>
-         <td bgcolor="white" th:text="${player.team.teamname}"></td>
-        <td bgcolor="white" th:text="${player.player_role}"></td>
-
-
- </table>
-</div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </th:block>
+    </div>
 <style>
+.flip-card {
+  background-color: rgba(0,0,0, 0.5);
+  width: 300px;
+  height: 200px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+    width: 300px;
+  height: 200px;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+
+
+
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+
+
+
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+    width: 300px;
+  height: 200px;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color: rgba(0,0,0, 0.5);
+  color: white;
+
+
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: rgba(0,0,0, 0.5);
+  color: white;
+  transform: rotateY(180deg);
+}
+
+
 body {
   background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1605&q=80');
     min-height: 380px;
@@ -79,19 +143,7 @@ background-repeat: no-repeat;
 background-size: cover;
 position: relative;
 }
-.register {
- background-color: rgba(0,0,0,0.5);
-    width: 60%;
-    font-size: 18px;
-    border-radius: 10px;
-    border: 1px solid rgba(255,255,255, 0.3);
-    box-shadow: 2px 2px 15px rgba(0,0,0,0.3);
-    color: #fff;
-    position:absolute;
-    top:15%;
-    left:25%;
-    bottom:40%;
-}
+
 </style>
 </div>
 

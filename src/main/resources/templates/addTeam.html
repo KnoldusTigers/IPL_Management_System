@@ -64,9 +64,10 @@
                 <span class="input-group-text ">Name</span>
                 <input type="text" aria-label="Name" class="form-control" th:field="*{teamname}" />
                 <br>
-                <td th:if="${#fields.hasErrors('teamname')}" th:errors="*{teamname}">name not null</td>
 
             </div>
+            <p th:if="${#fields.hasErrors('teamname')}" class="text-danger ml-1" th:errors="*{teamname}">Name Error</p>
+
             <br>
             <div class="input-group">
                 <span class="input-group-text ">Captain</span>

@@ -7,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * The type Point controller.
@@ -27,6 +30,7 @@ public class PointController {
     public String viewHome(final Model model) {
 
         List<PointModel> pointlist = resultservic.getPoint();
+
         model.addAttribute("pointlist", pointlist);
 
         return "index";

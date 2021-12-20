@@ -59,7 +59,7 @@
                     <div class="row pl-3">
                         <div class="col p-4">
                             <div class="team">
-                                <h5 class="text-white font-weight-bold" align="center"> <a th:href="@{/showPlayers/{team_id}(team_id=${Team.id})}">[[${Team.teamname}]]</a></h5>
+                                <h2 class="text-white font-weight-bold" align="center"> <a th:href="@{/showPlayers/{team_id}(team_id=${Team.id})}">[[${Team.teamname}]]</a></h2>
                             </div>
                         </div>
 
@@ -69,13 +69,13 @@
 
                     <div class="row pt-3">
                         <div class="col text-center">
-                            <h6 bgcolor="white" >(captain) <p th:text="${Team.Captain}" ></p></h6>
+                            <b><h4 bgcolor="white" >(captain) <p th:text="${Team.Captain}" ></p></h4></b>
                         </div>
                     </div>
 
 
                     <div class="col text-center">
-                        <h7 class="text-white font-weight-bold"><i class="bi bi-geo-alt-fill p-1"></i>[[${Team.state}]]</h7>
+                        <h4 class="text-white font-weight-bold"><i class="bi bi-geo-alt-fill p-1"></i>[[${Team.state}]]</h4>
                     </div>
 
                 </div>

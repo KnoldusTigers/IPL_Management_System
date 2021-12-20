@@ -75,7 +75,7 @@
     <h1>Update Player</h1>
     <br />
     <div class="col-sm-4">
-        <form action="#" th:action="@{/Save}" th:object="${Player}" method="post">
+        <form action="#" th:action="@{/UpdatePlayers}" th:object="${Player}" method="post">
 
             <div class="input-group">
                 <span class="input-group-text "  >ID</span>
@@ -86,7 +86,6 @@
             <div class="input-group">
                 <span class="input-group-text "  >Player Name</span>
                 <input type="text" aria-label="Name" readonly class="form-control" th:field="*{name}" />
-                <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name not null</td>
 
             </div>
 

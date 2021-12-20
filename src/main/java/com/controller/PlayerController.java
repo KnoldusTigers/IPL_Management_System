@@ -1,4 +1,5 @@
 package com.controller;
+import com.dao.TeamRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,8 @@ public class PlayerController {
     private TeamService teamservice;
     @Autowired
     private PlayerRepo playerRepo;
-
+@Autowired
+private TeamRepo teamRepo;
     /**
      * Add string.
      *
@@ -49,16 +51,16 @@ public class PlayerController {
     /**
      * Save player string.
      *
-     * @param pm     the pm
+     * @param playersModelObj     the pm
      * @param result the result
      * @return the string
      */
 //save player in database and check validations before save
     @RequestMapping(value = "/Save", method = RequestMethod.POST)
-    public String savePlayer(@Valid @ModelAttribute("Player") final PlayersModel pm, BindingResult result) {
-        if(playerservice.playernameExists(String.valueOf(pm.getName()))){
+    public String savePlayer(@Valid @ModelAttribute("Player") final PlayersModel playersModelObj, BindingResult result) {
+        if(playerservice.playernameExists(String.valueOf(playersModelObj.getName()))){
 
-            result.addError(new FieldError("pm","name","name already exists"));
+            result.addError(new FieldError("playersModelObj","name","name already exists"));
         }
         if (result.hasErrors()) {
             logger.info("Validation errors while submitting form.");
@@ -66,7 +68,25 @@ public class PlayerController {
 
         }
         else {
-            playerservice.save(pm);
+            if(teamRepo.findById(playersModelObj.getTeam().getId()).get().getPlayersModel().size()<15)
+            {
+                playerservice.save(playersModelObj);
+
+            }
+            return "redirect:showPlayers";
+
+        }
+    }
+    @RequestMapping(value = "/UpdatePlayers", method = RequestMethod.POST)
+    public String updatePlayer(@Valid @ModelAttribute("Player") final PlayersModel playersModelObj, BindingResult result) {
+
+        if (result.hasErrors()) {
+            logger.info("Validation errors while submitting form.");
+            return "updatePlayer";
+
+        }
+        else {
+            playerservice.save(playersModelObj);
             return "redirect:showPlayers";
 
         }

@@ -81,7 +81,6 @@
             <div class="input-group">
                 <span class="input-group-text">Match ID</span>
                 <input type="text" readonly aria-label="" class="form-control" th:field="*{matchid}" />
-
             </div>
             <br>
             <div class="mb-3">
@@ -102,11 +101,13 @@
                     </div>
                 </select>
             </div>
-            <div class="mb-3">
-                <label class="form-label">Date</label>
-                <input type="datetime-local" name="meeting-time" th:id="meeting-time"
-                       min="2021-06-07T00:00" max="2030-06-14T024:00" th:field="*{scheduledate}"/>
-
+            <div class='input-group date' th:id='datetimepicker1'>
+                <input type='date' class="form-control" th:field="*{scheduledate}" />
+                <span class="input-group-addon">
+               <span class="glyphicon glyphicon-calendar"></span>
+               </span>
+                </br>
+                </br>
             </div>
 
             <script th:inline="javascript">

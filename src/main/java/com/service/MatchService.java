@@ -3,6 +3,7 @@ package com.service;
 
 import com.dao.MatchRepo;
 import com.model.MatchModel;
+import com.model.TeamModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
@@ -80,19 +81,19 @@ public class MatchService {
 //    return false;
 //}
 //
-//    @Transactional
-//    public Optional<MatchModel> findVenueIsExist (String venue) {
-//        return matchRepo.findByVenue(venue);
-//    }
-//    public boolean venueExists (String venue,BindingResult result) {
-//        try {
-//            return findVenueIsExist(venue).isPresent();
-//        }
-//        catch (Exception e) {
-//            result.addError(new FieldError("match", "scheduledate", "date or venue already exist"));
-//        }
-//        return false;
-//    }
+    @Transactional
+    public Optional<MatchModel> findVenueIsExist (String venue) {
+        return matchRepo.findByVenue(venue);
+    }
+    public boolean venueExists (String venue, BindingResult result) {
+        try {
+            return findVenueIsExist(venue).isPresent();
+        }
+        catch (Exception e) {
+            result.addError(new FieldError("match", "scheduledate", "date or venue already exist"));
+        }
+        return false;
+    }
 
     /**
      * Find date is exist optional.
@@ -102,9 +103,9 @@ public class MatchService {
      */
     @Transactional
     public Optional<MatchModel> findDateIsExist (String date){
-        Optional<MatchModel> matchModeldate= matchRepo.findByScheduledate(date);
 
-        return matchModeldate;
+        return matchRepo.findByScheduledate(date);
+
     }
 
     /**
@@ -114,18 +115,24 @@ public class MatchService {
      * @return the boolean
      */
     public boolean DateIsExist (String date){
-        Optional<MatchModel> matchModeldate= findDateIsExist(date);
-        if(matchModeldate.isPresent()){
-            String dates= matchModeldate.get().getScheduledate();
-            String  D = dates.substring(0, 10);
-            System.out.println(D);
-            if(matchModeldate.get().getScheduledate().contains(D))
-                return  true;
+        return findDateIsExist(date).isPresent();
 
-        }
-
-        return false;
     }
+    @Transactional
+    public Optional<MatchModel> findTeam (TeamModel team1){
 
+        return matchRepo.findByTeam1(team1);
+
+    }
+    public boolean teamIsExist (TeamModel team1,BindingResult result){
+        try {
+            return findTeam(team1).isPresent();        }
+        catch (Exception e) {
+            result.addError(new FieldError("match", "team1", "teams already exist"));
+        }
+        return false;
+        
+
+    }
 
 }

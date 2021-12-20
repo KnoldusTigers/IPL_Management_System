@@ -60,13 +60,13 @@
                 <span class="input-group-text ">Player Name</span>
                 <input type="text" aria-label="Name" class="form-control" th:field="*{name}" />
                 <br>
-                <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name not null</td>
-
             </div>
+            <p th:if="${#fields.hasErrors('name')}" class="text-danger ml-1" th:errors="*{name}">Name Error</p>
+
             <br>
 
             <div class="input-group">
-                <label   class="form-label">Team</label>
+                <span class="input-group-text ">Teams</span>
                 <select th:field="*{team}" class="custom-select">
                     <div th:each="teams:${teamList}">
                         <option th:value="${teams.id}" th:text="${teams.teamname}"></option>
@@ -78,9 +78,10 @@
             <div class="input-group">
                 <span class="input-group-text ">Player Role</span>
                 <input type="text" aria-label="Name" class="form-control" th:field="*{player_role}" />
-                <div class="alert alert-warning" th:if="${#fields.hasErrors('player_role')}" th:errors="*{player_role}">name not null</div>
 
             </div>
+            <p th:if="${#fields.hasErrors('player_role')}" class="text-danger ml-1" th:errors="*{player_role}">Name Error</p>
+
             <br>
             <br>
 

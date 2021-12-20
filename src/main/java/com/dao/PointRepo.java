@@ -4,6 +4,8 @@ import com.model.PointModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * The interface Point repo.
  */
@@ -17,4 +19,5 @@ public interface PointRepo extends JpaRepository<PointModel,Long> {
      * @return the point model
      */
     PointModel findByTeamId(Long id);
+     
 }

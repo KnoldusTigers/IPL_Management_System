@@ -1,0 +1,140 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title> </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">IPL Management System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  th:href="@{'/addTeam'}">Add Team</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/addPlayers'}">Add Players</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link "  th:href="@{'/matchSchedule'}">Schedule Match</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  th:href="@{'/editPlayers'}">Edit Players</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  th:href="@{'/editMatch'}">Edit Match</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  th:href="@{'/EditListScore'}">Update Score</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div align="center">
+    <br>
+    <h1><b> Update Score</b></h1>
+    <div class="col-sm-4">
+        <form action="#" th:action="@{/SaveScore}" th:object="${match}" method="post">
+
+            <div class="input-group">
+
+                <input type="text" readonly aria-label="" hidden class="form-control" th:field="*{matchid}" />
+
+            </div>
+            <br>
+            <div class="input ">
+                <input type="text" readonly aria-label=""hidden class="form-control" th:field="*{team1}" />
+
+            </div>
+            <br>
+            <div class="input ">
+                <input type="text" readonly aria-label="" hidden class="form-control" th:field="*{team2}" />
+
+            </div>
+            <br>
+            <div class="input">
+                <input type="text" readonly aria-label="" hidden class="form-control" th:field="*{venue}" />
+
+            </div>
+            <br>
+            <div class="input">
+                <input type="text" readonly aria-label="" hidden class="form-control" th:field="*{scheduledate}" />
+
+            </div>
+            <br>
+
+            <div class="input-group mb-3">
+
+                <span class="input-group-text "><b>[[${match.team1.teamname}]]</b></span>
+                <input type="number" min="0" max="720" aria-label="Name"  placeholder="Enter Total runs without decimal" class="form-control" th:field="*{team1Description}" required/>
+
+
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-text "><b>Team1 Wickets</b></span>
+                <input type="number" min="0" max="10" aria-label="Name" class="form-control" th:field="*{team1Wickets}" />
+                <td th:if="${#fields.hasErrors('team1Wickets')}" th:errors="*{team1Wickets}">wickets error</td>
+
+            </div>
+            <br>
+
+            <div class="input-group">
+
+                <span class="input-group-text "><b>Team1 Overs</b></span>
+                <input type="number" step="0.1" min="0" max="20" aria-label="Name" class="form-control" th:field="*{team1Overs}" />
+                <td th:if="${#fields.hasErrors('team1Overs')}" th:errors="*{team1Overs}">over error</td>
+
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-text "><b>[[${match.team2.teamname}]]</b></span>
+                <input type="number" min="0" max="720" aria-label="Name" class="form-control" th:field="*{team2Description}" />
+            </div>
+            <br>
+
+            <div class="input-group">
+                <span class="input-group-text "><b>Team2 Wickets</b></span>
+                <input type="number" min="0" max="10" aria-label="Name" class="form-control" th:field="*{team2Wickets}" />
+                <td th:if="${#fields.hasErrors('team2Wickets')}" th:errors="*{team2Wickets}">wickets error</td>
+
+            </div>
+            <br>
+
+            <div class="input-group">
+                <span class="input-group-text "><b>Team2 Overs</b></span>
+                <input type="number" step="0.1" min="0" max="20" aria-label="Name" class="form-control" th:field="*{team2Overs}" />
+                <td th:if="${#fields.hasErrors('team2Overs')}" th:errors="*{team2Overs}">over error</td>
+
+            </div>
+            <br>
+            <br>
+            <button type="submit" onclick="verify()" class="btn btn-info">Save</button>
+
+<!--            <button type="submit" class="btn btn-info">Save</button>-->
+        </form>
+    </div>
+</div>
+</body>
+<script>
+     function verify() {
+
+            alert("Score has been updated successfully")
+
+    document.getElementById("send").click()
+
+    }
+</script>
+
+</html>
